@@ -5,7 +5,7 @@
     
   <url>
     <loc>blog.yuanqinglong.cn/%E5%8E%9F%E7%94%9FJS%E5%AE%9E%E7%8E%B0jQuery%E7%9A%84addClass,%20removeClass,%20hasClass%E5%87%BD%E6%95%B0%E5%8A%9F%E8%83%BD.html</loc>
-    <lastmod>2018-01-20T15:22:38.999Z</lastmod>
+    <lastmod>2018-01-21T01:49:28.638Z</lastmod>
     <data>
         <display>
         <title>原生JS实现jQuery的addClass, removeClass, hasClass函数功能</title>
@@ -25,20 +25,18 @@
     
   <url>
     <loc>blog.yuanqinglong.cn/hello-world.html</loc>
-    <lastmod>2018-01-20T05:33:27.537Z</lastmod>
+    <lastmod>2018-01-21T01:26:43.275Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
         <pubTime>2018-01-17T13:17:10.145Z</pubTime>
         
-        <tag>hexo </tag>
-         
-        <tag>常见使用问题</tag>
+        <tag>hexo</tag>
          
          
            
              
-              <breadCrumb title="hexo" url="blog.yuanqinglong.cn/categories/hexo/"/>
+              <breadCrumb title="hexo 常用命令" url="blog.yuanqinglong.cn/categories/hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
           
         </display>
     </data>
