@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="blog.yuanqinglong.cn/"/>
-  <updated>2018-01-24T08:23:45.239Z</updated>
+  <updated>2018-01-24T08:29:00.834Z</updated>
   <id>blog.yuanqinglong.cn/</id>
   
   <author>
@@ -21,16 +21,23 @@
     <link href="blog.yuanqinglong.cn/%E5%85%B3%E4%BA%8Eobject-key%E4%B8%8Eobject-key-%E7%9A%84%E5%8C%BA%E5%88%AB.html"/>
     <id>blog.yuanqinglong.cn/关于object-key与object-key-的区别.html</id>
     <published>2018-01-24T07:01:27.000Z</published>
-    <updated>2018-01-24T08:23:45.239Z</updated>
+    <updated>2018-01-24T08:29:00.834Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>记录所需要的，摒弃多余的。<br>本篇文章是对segmentfault的一个问答的总结。</p></blockquote><h2 id="obeject-key与object-key-有什么区别"><a href="#obeject-key与object-key-有什么区别" class="headerlink" title="obeject.key与object[key]有什么区别?"></a>obeject.key与object[key]有什么区别?</h2><p>有什么区别，不试试怎么知道？</p><h5 id="测试代码（其实有很多栗子，随便举一个）："><a href="#测试代码（其实有很多栗子，随便举一个）：" class="headerlink" title="测试代码（其实有很多栗子，随便举一个）："></a>测试代码（其实有很多栗子，随便举一个）：</h5><pre><code> var obj = {    name: &apos;tom&apos;,    age: 22},someKey = &apos;age&apos;;        console.log(obj.name);   // 可以访问，返回 &apos;tom&apos;console.log(obj[&apos;name&apos;]);  // 可以访问，返回 &apos;tom&apos;console.log(obj.someKey);  // undefineconsole.log(obj[someKey]);  // 可以访问，返回 &apos;22&apos;</code></pre><h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><p>（放图）<br><img src="../imgs/blogContentImgs/2018-1-24-01.png" alt="Alt text" title="node 运行截图"></p><h5 id="通常来讲，-obj-“key”-与-obj-key-的作用差不多，但是，"><a href="#通常来讲，-obj-“key”-与-obj-key-的作用差不多，但是，" class="headerlink" title="通常来讲， obj[“key”]  与 obj.key 的作用差不多，但是，"></a>通常来讲， <em>obj[“key”]</em> 与 <em>obj.key</em> 的作用差不多，但是，</h5><ul><li>如果key不确定（key是变量）的情况下，</li><li>或者key的写法比较特殊（比如包含空格什么的）</li></ul><h5 id="则只能通过obj-的方式去访问"><a href="#则只能通过obj-的方式去访问" class="headerlink" title="则只能通过obj[ ]的方式去访问"></a>则只能通过<code>obj[ ]</code>的方式去访问</h5>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>记录所需要的，摒弃多余的。<br>本篇文章是对segmentfault的一个问答的总结。</p></blockquote><h2 id="obeject-key与object-key-有什么区别"><a href="#obeject-key与object-key-有什么区别" class="headerlink" title="obeject.key与object[key]有什么区别?"></a>obeject.key与object[key]有什么区别?</h2><p>有什么区别，不试试怎么知道？</p><h5 id="测试代码（其实有很多栗子，随便举一个）："><a href="#测试代码（其实有很多栗子，随便举一个）：" class="headerlink" title="测试代码（其实有很多栗子，随便举一个）："></a>测试代码（其实有很多栗子，随便举一个）：</h5><pre><code> var obj = {    name: &apos;tom&apos;,    age: 22},someKey = &apos;age&apos;;        console.log(obj.name);   console.log(obj[&apos;name&apos;]); console.log(obj.someKey);  console.log(obj[someKey]);  </code></pre><a id="more"></a><h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><p>（放图）<br><img src="../imgs/blogContentImgs/2018-1-24-01.png" alt="Alt text" title="node 运行截图"></p><h5 id="通常来讲，-obj-“key”-与-obj-key-的作用差不多，但是，"><a href="#通常来讲，-obj-“key”-与-obj-key-的作用差不多，但是，" class="headerlink" title="通常来讲， obj[“key”]  与 obj.key 的作用差不多，但是，"></a>通常来讲， <em>obj[“key”]</em> 与 <em>obj.key</em> 的作用差不多，但是，</h5><ul><li>如果key不确定（key是变量）的情况下，</li><li>或者key的写法比较特殊（比如包含空格什么的）</li></ul><h5 id="则只能通过obj-的方式去访问"><a href="#则只能通过obj-的方式去访问" class="headerlink" title="则只能通过obj[ ]的方式去访问"></a>则只能通过<code>obj[ ]</code>的方式去访问</h5>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;&lt;p&gt;记录所需要的，摒弃多余的。&lt;br&gt;本篇文章是对segmentfault的一个问答的总结。&lt;/p&gt;&lt;/blockquote&gt;&lt;h2 id=&quot;obeject-key与object-key-有什么区别&quot;&gt;&lt;a href=&quot;#obeject-key与obje
-      
+      &lt;blockquote&gt;&lt;p&gt;记录所需要的，摒弃多余的。&lt;br&gt;本篇文章是对segmentfault的一个问答的总结。&lt;/p&gt;&lt;/blockquote&gt;&lt;h2 id=&quot;obeject-key与object-key-有什么区别&quot;&gt;&lt;a href=&quot;#obeject-key与object-key-有什么区别&quot; class=&quot;headerlink&quot; title=&quot;obeject.key与object[key]有什么区别?&quot;&gt;&lt;/a&gt;obeject.key与object[key]有什么区别?&lt;/h2&gt;&lt;p&gt;有什么区别，不试试怎么知道？&lt;/p&gt;&lt;h5 id=&quot;测试代码（其实有很多栗子，随便举一个）：&quot;&gt;&lt;a href=&quot;#测试代码（其实有很多栗子，随便举一个）：&quot; class=&quot;headerlink&quot; title=&quot;测试代码（其实有很多栗子，随便举一个）：&quot;&gt;&lt;/a&gt;测试代码（其实有很多栗子，随便举一个）：&lt;/h5&gt;&lt;pre&gt;&lt;code&gt; var obj = {
+    name: &amp;apos;tom&amp;apos;,
+    age: 22
+},
+someKey = &amp;apos;age&amp;apos;;        
+
+console.log(obj.name);   
+console.log(obj[&amp;apos;name&amp;apos;]); 
+console.log(obj.someKey);  
+console.log(obj[someKey]);  
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
