@@ -1,0 +1,838 @@
+<!DOCTYPE html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="icon" type="image/png" sizes="32x32" href="/imgs/favicon-32x32-next.ico?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/imgs/favicon-16x16-next.ico?v=5.1.4"><meta name="keywords" content="let,"><link rel="alternate" href="/atom.xml" title="西伯利亚大尾巴狼" type="application/atom+xml"><meta name="description" content="阅读声明：本文摘取自阮一峰先生的著作《ECMAScript 6 入门》原文链接：http://es6.ruanyifeng.com/#docs/let学海无涯，愿与诸君共勉基本用法块级作用域ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。12345678  &amp;#123;   let a = 10;   var b = 1;  &amp;#1"><meta name="keywords" content="let"><meta property="og:type" content="article"><meta property="og:title" content="关于ES6 : let 篇 "><meta property="og:url" content="blog.yuanqinglong.cn/关于ES6-let-篇.html"><meta property="og:site_name" content="西伯利亚大尾巴狼"><meta property="og:description" content="阅读声明：本文摘取自阮一峰先生的著作《ECMAScript 6 入门》原文链接：http://es6.ruanyifeng.com/#docs/let学海无涯，愿与诸君共勉基本用法块级作用域ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。12345678  &amp;#123;   let a = 10;   var b = 1;  &amp;#1"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2018-02-02T13:24:44.342Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="关于ES6 : let 篇 "><meta name="twitter:description" content="阅读声明：本文摘取自阮一峰先生的著作《ECMAScript 6 入门》原文链接：http://es6.ruanyifeng.com/#docs/let学海无涯，愿与诸君共勉基本用法块级作用域ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。12345678  &amp;#123;   let a = 10;   var b = 1;  &amp;#1"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!0,onmobile:!0},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="blog.yuanqinglong.cn/关于ES6-let-篇.html"><title>关于ES6 : let 篇 | 西伯利亚大尾巴狼</title><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?1be86e2b6a4abba6c4a05e3af869e5a0";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><a href="https://github.com/JokerDr"><img style="position:absolute;top:0;right:0;border:0" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">西伯利亚大尾巴狼</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">子非鱼，安知鱼之乐？</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="blog.yuanqinglong.cn/关于ES6-let-篇.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="袁庆龙"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/me.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="西伯利亚大尾巴狼"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">关于ES6 : let 篇</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-27T20:26:15+08:00">2018-01-27 </time><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i> </span><span class="post-meta-item-text">更新于&#58;</span> <time title="更新于" itemprop="dateModified" datetime="2018-02-02T21:24:44+08:00">2018-02-02 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span> </a></span></span><span id="/关于ES6-let-篇.html" class="leancloud_visitors" data-flag-title="关于ES6 : let 篇 "><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数&#58;</span> <span class="leancloud-visitors-count"></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计&#58;</span> <span title="字数统计">3,432 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">14</span></div></div></header><div class="post-body" itemprop="articleBody"><blockquote><p>阅读声明：本文摘取自阮一峰先生的著作《ECMAScript 6 入门》<br>原文链接：<a href="http://es6.ruanyifeng.com/#docs/let" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/let</a><br>学海无涯，愿与诸君共勉</p></blockquote><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><ul><li><h5 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h5>ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在<br>let命令所在的代码块内有效。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">   <span class="built_in">let</span> a = 10;</span><br><span class="line">   var b = 1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a // ReferenceError: a is not defined.</span><br><span class="line">b // 1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面代码在代码块之中，分别用let和var声明了两个变量。然后在代码块之外调用这两个变量，结果let声明的变量报错，var声明的变量返回了正确的值。这表明，let声明的变量只在它所在的代码块有效。</p>
+<p>for循环的计数器，就很合适使用let命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(i);</span><br><span class="line">// ReferenceError: i is not defined</span><br></pre></td></tr></table></figure>
+<p>上面代码中，计数器i只在for循环体内有效，在循环体外引用就会报错。</p>
+<p>下面的代码如果使用var，最后输出的是10。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = [];</span><br><span class="line"><span class="keyword">for</span> (var i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 10</span><br></pre></td></tr></table></figure>
+<p>上面代码中，变量i是var命令声明的，在全局范围内都有效，所以全局只有一个变量i。每一次循环，变量i的值都会发生改变，而循环内被赋给数组a的函数内部的console.log(i)，里面的i指向的就是全局的i。也就是说，所有数组a的成员里面的i，指向的都是同一个i，导致运行时输出的是最后一轮的i的值，也就是 10。</p>
+<p>如果使用let，声明的变量仅在块级作用域内有效，最后输出的是 6。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 6</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码中，变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是6。你可能会问，如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算。</p>
+<p>另外，for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">  <span class="built_in">let</span> i = <span class="string">'abc'</span>;</span><br><span class="line">  console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">// abc</span><br><span class="line">// abc</span><br><span class="line">// abc</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码正确运行，输出了 3 次abc。这表明函数内部的变量i与循环变量i不在同一个作用域，有各自单独的作用域。</p>
+<ul>
+<li><h5 id="不存在变量提升"><a href="#不存在变量提升" class="headerlink" title="不存在变量提升"></a>不存在变量提升</h5>var命令会发生”变量提升“现象，即变量可以在声明之前使用，值为undefined。这种现象多多少少是有些奇怪的，按照一般的逻辑，变量应该在声明语句之后才可以使用。<br>为了纠正这种现象，let命令改变了语法行为，它所声明的变量一定要在声明后使用，否则报错。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// var 的情况</span><br><span class="line">console.log(foo); // 输出undefined</span><br><span class="line">var foo = 2;</span><br><span class="line"></span><br><span class="line">// <span class="built_in">let</span> 的情况</span><br><span class="line">console.log(bar); // 报错ReferenceError</span><br><span class="line"><span class="built_in">let</span> bar = 2;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面代码中，变量foo用var命令声明，会发生变量提升，即脚本开始运行时，变量foo已经存在了，但是没有值，所以会输出undefined。变量bar用let命令声明，不会发生变量提升。这表示在声明它之前，变量bar是不存在的，这时如果用到它，就会抛出一个错误。</p>
+<ul>
+<li><h5 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h5>只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var tmp = 123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  tmp = <span class="string">'abc'</span>; // ReferenceError</span><br><span class="line">  <span class="built_in">let</span> tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面代码中，存在全局变量tmp，但是块级作用域内let又声明了一个局部变量tmp，导致后者绑定这个块级作用域，所以在let声明变量前，对tmp赋值会报错。</p>
+<p>ES6 明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。</p>
+<p>总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  // TDZ开始</span><br><span class="line">  tmp = <span class="string">'abc'</span>; // ReferenceError</span><br><span class="line">  console.log(tmp); // ReferenceError</span><br><span class="line"></span><br><span class="line">  <span class="built_in">let</span> tmp; // TDZ结束</span><br><span class="line">  console.log(tmp); // undefined</span><br><span class="line"></span><br><span class="line">  tmp = 123;</span><br><span class="line">  console.log(tmp); // 123</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码中，在let命令声明变量tmp之前，都属于变量tmp的“死区”。</p>
+<p>“暂时性死区”也意味着typeof不再是一个百分之百安全的操作。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typeof x; // ReferenceError</span><br><span class="line"><span class="built_in">let</span> x;</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码中，变量x使用let命令声明，所以在声明之前，都属于x的“死区”，只要用到该变量就会报错。因此，typeof运行时就会抛出一个ReferenceError。</p>
+<p>作为比较，如果一个变量根本没有被声明，使用typeof反而不会报错。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof undeclared_variable // <span class="string">"undefined"</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，undeclared_variable是一个不存在的变量名，结果返回“undefined”。所以，在没有let之前，typeof运算符是百分之百安全的，永远不会报错。现在这一点不成立了。这样的设计是为了让大家养成良好的编程习惯，变量一定要在声明之后使用，否则就报错。</p>
+<p>有些“死区”比较隐蔽，不太容易发现。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> bar(x = y, y = 2) &#123;</span><br><span class="line">  <span class="built_in">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar(); // 报错</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码中，调用bar函数之所以报错（某些实现可能不报错），是因为参数x默认值等于另一个参数y，而此时y还没有声明，属于”死区“。如果y的默认值是x，就不会报错，因为此时x已经声明了。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> bar(x = 2, y = x) &#123;</span><br><span class="line">  <span class="built_in">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line">bar(); // [2, 2]</span><br></pre></td></tr></table></figure><p></p>
+<p>另外，下面的代码也会报错，与var的行为不同。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 不报错</span><br><span class="line">var x = x;</span><br><span class="line"></span><br><span class="line">// 报错</span><br><span class="line"><span class="built_in">let</span> x = x;</span><br><span class="line">// ReferenceError: x is not defined</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码报错，也是因为暂时性死区。使用let声明变量时，只要变量在还没有声明完成前使用，就会报错。上面这行就属于这个情况，在变量x的声明语句还没有执行完成前，就去取x的值，导致报错”x 未定义“。</p>
+<p>ES6 规定暂时性死区和let、const语句不出现变量提升，主要是为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。这样的错误在 ES5 是很常见的，现在有了这种规定，避免此类错误就很容易了。</p>
+<p>总之，暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。</p>
+<ul>
+<li><h5 id="不允许重复声明"><a href="#不允许重复声明" class="headerlink" title="不允许重复声明"></a>不允许重复声明</h5>let不允许在相同作用域内，重复声明同一个变量。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 报错</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">func</span></span>() &#123;</span><br><span class="line">  <span class="built_in">let</span> a = 10;</span><br><span class="line">  var a = 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 报错</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">func</span></span>() &#123;</span><br><span class="line">  <span class="built_in">let</span> a = 10;</span><br><span class="line">  <span class="built_in">let</span> a = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因此，不能在函数内部重新声明参数。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> func(arg) &#123;</span><br><span class="line">  <span class="built_in">let</span> arg; // 报错</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> func(arg) &#123;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">let</span> arg; // 不报错</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<ul>
+<li><h5 id="块级作用域-1"><a href="#块级作用域-1" class="headerlink" title="块级作用域"></a>块级作用域</h5>为什么需要块级作用域？<br>ES5 只有全局作用域和函数作用域，没有块级作用域，这带来很多不合理的场景。</li>
+</ul>
+<p>第一种场景，内层变量可能会覆盖外层变量。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var tmp = new Date();</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123;</span><br><span class="line">  console.log(tmp);</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    var tmp = <span class="string">'hello world'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(); // undefined</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码的原意是，if代码块的外部使用外层的tmp变量，内部使用内层的tmp变量。但是，函数f执行后，输出结果为undefined，原因在于变量提升，导致内层的tmp变量覆盖了外层的tmp变量。</p>
+<p>第二种场景，用来计数的循环变量泄露为全局变量。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var s = <span class="string">'hello'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (var i = 0; i &lt; s.length; i++) &#123;</span><br><span class="line">  console.log(s[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(i); // 5</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码中，变量i只用来控制循环，但是循环结束后，它并没有消失，泄露成了全局变量。</p>
+<p>ES6 的块级作用域<br>let实际上为 JavaScript 新增了块级作用域。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f1</span></span>() &#123;</span><br><span class="line">  <span class="built_in">let</span> n = 5;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="built_in">let</span> n = 10;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(n); // 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<p>上面的函数有两个代码块，都声明了变量n，运行后输出 5。这表示外层代码块不受内层代码块的影响。如果两次都使用var定义变量n，最后输出的值才是 10。</p>
+<p>ES6 允许块级作用域的任意嵌套。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#123;&#123;&#123;<span class="built_in">let</span> insane = <span class="string">'Hello World'</span>&#125;&#125;&#125;&#125;&#125;;</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码使用了一个五层的块级作用域。外层作用域无法读取内层作用域的变量。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#123;&#123;</span><br><span class="line">  &#123;<span class="built_in">let</span> insane = <span class="string">'Hello World'</span>&#125;</span><br><span class="line">  console.log(insane); // 报错</span><br><span class="line">&#125;&#125;&#125;&#125;;</span><br></pre></td></tr></table></figure><p></p>
+<p>内层作用域可以定义外层作用域的同名变量。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#123;&#123;</span><br><span class="line">  <span class="built_in">let</span> insane = <span class="string">'Hello World'</span>;</span><br><span class="line">  &#123;<span class="built_in">let</span> insane = <span class="string">'Hello World'</span>&#125;</span><br><span class="line">&#125;&#125;&#125;&#125;;</span><br></pre></td></tr></table></figure><p></p>
+<p>块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// IIFE 写法</span><br><span class="line">(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  var tmp = ...;</span><br><span class="line">  ...</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">// 块级作用域写法</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">let</span> tmp = ...;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<ul>
+<li><h5 id="块级作用域与函数声明"><a href="#块级作用域与函数声明" class="headerlink" title="块级作用域与函数声明"></a>块级作用域与函数声明</h5>函数能不能在块级作用域之中声明？这是一个相当令人混淆的问题。</li>
+</ul>
+<p>ES5 规定，函数只能在顶层作用域和函数作用域之中声明，不能在块级作用域声明。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 情况一</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 情况二</span><br><span class="line">try &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123;&#125;</span><br><span class="line">&#125; catch(e) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<p>上面两种函数声明，根据 ES5 的规定都是非法的。</p>
+<p>但是，浏览器没有遵守这个规定，为了兼容以前的旧代码，还是支持在块级作用域之中声明函数，因此上面两种情况实际都能运行，不会报错。</p>
+<p>ES6 引入了块级作用域，明确允许在块级作用域之中声明函数。ES6 规定，块级作用域之中，函数声明语句的行为类似于let，在块级作用域之外不可引用。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123; console.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    // 重复声明一次函数f</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123; console.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure><p></p>
+<p>上面代码在 ES5 中运行，会得到“I am inside!”，因为在if内声明的函数f会被提升到函数头部，实际运行的代码如下。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// ES5 环境</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123; console.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123; console.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure><p></p>
+<p>ES6 就完全不一样了，理论上会得到“I am outside!”。因为块级作用域内声明的函数类似于let，对作用域之外没有影响。但是，如果你真的在 ES6 浏览器中运行一下上面的代码，是会报错的，这是为什么呢？</p>
+<p>原来，如果改变了块级作用域内声明的函数的处理规则，显然会对老代码产生很大影响。为了减轻因此产生的不兼容问题，ES6 在附录 B里面规定，浏览器的实现可以不遵守上面的规定，有自己的行为方式。</p>
+<p>允许在块级作用域内声明函数。<br>函数声明类似于var，即会提升到全局作用域或函数作用域的头部。<br>同时，函数声明还会提升到所在的块级作用域的头部。<br>注意，上面三条规则只对 ES6 的浏览器实现有效，其他环境的实现不用遵守，还是将块级作用域的函数声明当作let处理。</p>
+<p>根据这三条规则，在浏览器的 ES6 环境中，块级作用域内声明的函数，行为类似于var声明的变量。</p>
+<p>// 浏览器的 ES6 环境<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123; console.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    // 重复声明一次函数f</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123; console.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br><span class="line">// Uncaught TypeError: f is not a <span class="keyword">function</span></span><br></pre></td></tr></table></figure><p></p>
+<p>上面的代码在符合 ES6 的浏览器中，都会报错，因为实际运行的是下面的代码。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 浏览器的 ES6 环境</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123; console.log(<span class="string">'I am outside!'</span>); &#125;</span><br><span class="line">(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">  var f = undefined;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123; console.log(<span class="string">'I am inside!'</span>); &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  f();</span><br><span class="line">&#125;());</span><br><span class="line">// Uncaught TypeError: f is not a <span class="keyword">function</span></span><br></pre></td></tr></table></figure><p></p>
+<p>考虑到环境导致的行为差异太大，应该避免在块级作用域内声明函数。如果确实需要，也应该写成函数表达式，而不是函数声明语句。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 函数声明语句</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">let</span> a = <span class="string">'secret'</span>;</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> a;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 函数表达式</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">let</span> a = <span class="string">'secret'</span>;</span><br><span class="line">  <span class="built_in">let</span> f = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> a;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p>
+<p>另外，还有一个需要注意的地方。ES6 的块级作用域允许声明函数的规则，只在使用大括号的情况下成立，如果没有使用大括号，就会报错。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 不报错</span><br><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 报错</span><br><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>)</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123;&#125;</span><br></pre></td></tr></table></figure><p></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    袁庆龙
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="blog.yuanqinglong.cn/关于ES6-let-篇.html" title="关于ES6 : let 篇 ">blog.yuanqinglong.cn/关于ES6-let-篇.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/let/" rel="tag"># let</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/关于object-key与object-key-的区别.html" rel="next" title="关于object.key与object[key]的区别">
+                <i class="fa fa-chevron-left"></i> 关于object.key与object[key]的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/关于ES6-const-篇.html" rel="prev" title="关于ES6 const 篇">
+                关于ES6 const 篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">var jiathis_config={data_track_clickback:!0,summary:"",shortUrl:!1,hideMore:!1}</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/me.jpg" alt="袁庆龙">
+            
+              <p class="site-author-name" itemprop="name">袁庆龙</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/JokerDr" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yuanql96@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/9239487" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本用法"><span class="nav-number">1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#块级作用域"><span class="nav-number">1.1.</span> <span class="nav-text">块级作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不存在变量提升"><span class="nav-number">1.2.</span> <span class="nav-text">不存在变量提升</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#暂时性死区"><span class="nav-number">1.3.</span> <span class="nav-text">暂时性死区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不允许重复声明"><span class="nav-number">1.4.</span> <span class="nav-text">不允许重复声明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#块级作用域-1"><span class="nav-number">1.5.</span> <span class="nav-text">块级作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#块级作用域与函数声明"><span class="nav-number">1.6.</span> <span class="nav-text">块级作用域与函数声明</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">袁庆龙</span>
+
+  
+<span> &nbsp;| &nbsp;</span>Hosted by <a href="https://pages.coding.me" class="theme-link" target="_blank">Coding Pages</a>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+<span> &nbsp;| &nbsp;</span><span id="showDays"></span> 
+
+
+
+
+
+<script>var seconds=1e3,minutes=60*seconds,hours=60*minutes,days=24*hours,years=365*days,birthDay=Date.UTC(2018,1,17,0,0,0);setInterval(function(){var e=new Date,s=e.getFullYear(),t=e.getMonth()+1,a=e.getDate(),o=e.getHours(),r=e.getMinutes(),n=e.getSeconds(),h=Date.UTC(s,t,a,o,r,n)-birthDay,u=Math.floor(h/years),d=Math.floor(h/days-365*u),y=Math.floor((h-(365*u+d)*days)/hours),i=Math.floor((h-(365*u+d)*days-y*hours)/minutes),l=Math.floor((h-(365*u+d)*days-y*hours-i*minutes)/seconds);document.getElementById("showDays").innerHTML="本站已运行 "+u+" 年 "+d+" 天 "+y+" 小时 "+i+" 分钟 "+l+" 秒"},1e3)</script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("VY6NTiuQJ0iH3Rt9T1hX5XHg-gzGzoHsz","Fw1p53syfMKPTTmseDpBK2gT")</script>
+  <script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){var t=".leancloud-visitors-count";if(0!==e.length){for(var i=0;i<e.length;i++){var s=e[i],r=s.get("url"),l=s.get("time"),c=document.getElementById(r);$(c).find(t).text(l)}for(i=0;i<n.length;i++){r=n[i],c=document.getElementById(r);var u=$(c).find(t);""==u.text()&&u.text(0)}}else o.find(t).text(0)}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var s=new e,r=new AV.ACL;r.setPublicReadAccess(!0),r.setPublicWriteAccess(!0),s.setACL(r),s.set("title",o),s.set("url",n),s.set("time",1),s.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script>
+
+
+
+  
+
+  
+<script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script></body></html>
