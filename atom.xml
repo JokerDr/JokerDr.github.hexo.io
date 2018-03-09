@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="blog.yuanqinglong.cn/"/>
-  <updated>2018-03-03T14:05:18.018Z</updated>
+  <updated>2018-03-04T12:31:16.586Z</updated>
   <id>blog.yuanqinglong.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="blog.yuanqinglong.cn/%E5%85%B3%E4%BA%8Eajax%EF%BC%8C%E5%A4%A7%E6%A6%82%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E5%93%AA%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%80%A7%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%9F.html"/>
     <id>blog.yuanqinglong.cn/关于ajax，大概需要了解哪些基础性的东西？.html</id>
     <published>2018-03-03T13:43:07.000Z</published>
-    <updated>2018-03-03T14:05:18.018Z</updated>
+    <updated>2018-03-04T12:31:16.586Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>人总是健忘的，那么为什么不多动动手呢？比如说把知识记下来。<br>我们总会或有或无的接触ajax技术，那么作为一名学习者，就有必要了解相关的知识</p></blockquote><h3 id="ajax-客户端与服务器端异步的通信的技术-原理"><a href="#ajax-客户端与服务器端异步的通信的技术-原理" class="headerlink" title="ajax(客户端与服务器端异步的通信的技术)原理:"></a>ajax(客户端与服务器端异步的通信的技术)原理:</h3><p>相当于在用户和服务器之间加了—个中间层(AJAX引擎),<br>通过创建一个XmlHttpRequest对象来向服务器发异步请求,<br>通过回调在回调函数里进行dom操作.</p><ul><li><p>代码原理：</p><p>1.第一步：创建XMLHttpRequest 对象</p><pre><code>xmlhttp=new XMLHttpRequest();（它有兼容性问题，在ie中用的是new ActiveXObject）</code></pre><p>2.第二步：向服务器发送请求</p><pre><code>xmlhttp.open(&quot;GET/POST&quot;,url,true);xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);//POST时要加这句话xmlhttp.send();</code></pre></li></ul><a id="more"></a><pre><code>3.第三步：执行回调，在回调函数中进行相应的dom操作    xmlhttp.onreadystatechange=function()      {      if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)//判断状态码        {        //就可以执行相应的dom操作        document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;        }      }</code></pre><ul><li><p>readyState有5种值：</p><pre><code>0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪</code></pre></li><li><p>status状态码常见的有：</p><pre><code>200 服务器成功返回301 永久重定向302 临时重定向304 缓存403 服务器拒绝访问404 资源找不到500 服务器错误</code></pre><h3 id="优与劣"><a href="#优与劣" class="headerlink" title="优与劣"></a>优与劣</h3></li><li><h5 id="ajax的优点"><a href="#ajax的优点" class="headerlink" title="ajax的优点:"></a>ajax的优点:</h5><pre><code>&lt;1&gt;.无刷新更新数据。&lt;2&gt;.异步与服务器通信。&lt;3&gt;.前端和后端负载平衡。(减轻服务器的负担，AJAX的原则是“按需取数据”，可以最大程度的减少冗余请求和响应对服务器造成的负担)&lt;4&gt;.基于标准被广泛支持。&lt;5&gt;.界面与应用分离。</code></pre></li><li><h5 id="ajax的缺点"><a href="#ajax的缺点" class="headerlink" title="ajax的缺点:"></a>ajax的缺点:</h5><pre><code>&lt;1&gt;.AJAX干掉了Back和History功能，即对浏览器机制的破坏。&lt;2&gt;.AJAX的安全问题。&lt;3&gt;.违背URL和资源定位的初衷。&lt;4&gt;.客户端过肥，太多客户端代码造成开发上的成本。</code></pre></li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>人总是健忘的，那么为什么不多动动手呢？比如说把知识记下来。<br>我们总会或有或无的接触ajax技术，那么作为一名学习者，就有必要了解相关的知识</p></blockquote><h3 id="ajax-客户端与服务器端异步的通信的技术-原理"><a href="#ajax-客户端与服务器端异步的通信的技术-原理" class="headerlink" title="ajax(客户端与服务器端异步的通信的技术)原理:"></a>ajax(客户端与服务器端异步的通信的技术)原理:</h3><p>相当于在用户和服务器之间加了—个中间层(AJAX引擎),<br>通过创建一个XmlHttpRequest对象来向服务器发异步请求,<br>通过回调在回调函数里进行dom操作.</p><ul><li><p>代码原理：</p><p>1.第一步：创建XMLHttpRequest 对象</p><pre><code>xmlhttp=new XMLHttpRequest();（它有兼容性问题，在ie中用的是new ActiveXObject）</code></pre><p>2.第二步：向服务器发送请求</p><pre><code>xmlhttp.open(&quot;GET/POST&quot;,url,true);xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);//POST时要加这句话xmlhttp.send();</code></pre><a id="more"></a><p>3.第三步：执行回调，在回调函数中进行相应的dom操作</p><pre><code>xmlhttp.onreadystatechange=function()  {  if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)//判断状态码    {    //就可以执行相应的dom操作    document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;    }  }</code></pre></li><li><p>readyState有5种值：</p><pre><code>0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪</code></pre></li><li><p>status状态码常见的有：</p><pre><code>200 服务器成功返回301 永久重定向302 临时重定向304 缓存403 服务器拒绝访问404 资源找不到500 服务器错误</code></pre><h3 id="优与劣"><a href="#优与劣" class="headerlink" title="优与劣"></a>优与劣</h3></li><li><h5 id="ajax的优点"><a href="#ajax的优点" class="headerlink" title="ajax的优点:"></a>ajax的优点:</h5><pre><code>&lt;1&gt;.无刷新更新数据。&lt;2&gt;.异步与服务器通信。&lt;3&gt;.前端和后端负载平衡。(减轻服务器的负担，AJAX的原则是“按需取数据”，可以最大程度的减少冗余请求和响应对服务器造成的负担)&lt;4&gt;.基于标准被广泛支持。&lt;5&gt;.界面与应用分离。</code></pre></li><li><h5 id="ajax的缺点"><a href="#ajax的缺点" class="headerlink" title="ajax的缺点:"></a>ajax的缺点:</h5><pre><code>&lt;1&gt;.AJAX干掉了Back和History功能，即对浏览器机制的破坏。&lt;2&gt;.AJAX的安全问题。&lt;3&gt;.违背URL和资源定位的初衷。&lt;4&gt;.客户端过肥，太多客户端代码造成开发上的成本。</code></pre></li></ul>]]></content>
     
     <summary type="html">
     
@@ -31,7 +31,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.第二步：向服务器发送请求&lt;/p&gt;&lt;pre&gt;&lt;code&gt;xmlhttp.open(&amp;quot;GET/POST&amp;quot;,url,true);
 xmlhttp.setRequestHeader(&amp;quot;Content-type&amp;quot;,&amp;quot;application/x-www-form-urlencoded&amp;quot;);//POST时要加这句话
 xmlhttp.send();
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
