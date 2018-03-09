@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="blog.yuanqinglong.cn/"/>
-  <updated>2018-03-04T12:31:16.586Z</updated>
+  <updated>2018-03-09T15:00:53.393Z</updated>
   <id>blog.yuanqinglong.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于 ‘ + ’ 与 new Date</title>
+    <link href="blog.yuanqinglong.cn/%E5%85%B3%E4%BA%8E-%E2%80%99-%E2%80%98-%E4%B8%8E-new-Date.html"/>
+    <id>blog.yuanqinglong.cn/关于-’-‘-与-new-Date.html</id>
+    <published>2018-03-09T13:35:49.000Z</published>
+    <updated>2018-03-09T15:00:53.393Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>在读《javascript高级程序设计（第三版）》时，遇到的一行代码<br><code>var start = +new Date()</code>; 那么，<code>+new Date()</code>是什么意思？虽然大概有些猜测,但，我还是决定查一查。</p></blockquote><p>Javascript中可以在某个元素前使用<code>+</code>号,<br>这个操作是将该元素转换成<code>Number</code>类型，如果转换失败，会得到<code>NAN</code>.<br><strong>注</strong>：<em>（适当的使用 运算符 可以简化 Number类型的转化过程）</em></p><a id="more"></a><p>所以 <code>+newDate</code>将会调用<code>Data.prototype</code>上的<code>valueOf</code>,<br>而且，查一查MDN，我们也可以知道，<br><code>Data.prototype.valueOf()</code>等价于<code>Date.prototype.getTime()</code>.</p><p>所以下列代码的效果是相同的：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(+new Date);</span><br><span class="line">console.log(new Date().getTime());</span><br><span class="line">console.log(new Date().valueOf());</span><br><span class="line">console.log(new Date()*1);</span><br></pre></td></tr></table></figure><p>经过实际测试，以上所有代码都会返回当前时间的总毫秒数,（单纯的 <code>new Date</code>或<code>new Date()</code>会输出GMT时间， 如：Fri Mar 09 2018 22:17:43 GMT+0800 (中国标准时间)）</p><p>实际上，在上述代码中，<br>不止<code>+</code>号，在代码后面加上<code>*1</code>或者<code>/1</code>达到相同的输出效果</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;&lt;p&gt;在读《javascript高级程序设计（第三版）》时，遇到的一行代码&lt;br&gt;&lt;code&gt;var start = +new Date()&lt;/code&gt;; 那么，&lt;code&gt;+new Date()&lt;/code&gt;是什么意思？虽然大概有些猜测,但，我还是决定查一查。&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;Javascript中可以在某个元素前使用&lt;code&gt;+&lt;/code&gt;号,&lt;br&gt;这个操作是将该元素转换成&lt;code&gt;Number&lt;/code&gt;类型，如果转换失败，会得到&lt;code&gt;NAN&lt;/code&gt;.&lt;br&gt;&lt;strong&gt;注&lt;/strong&gt;：&lt;em&gt;（适当的使用 运算符 可以简化 Number类型的转化过程）&lt;/em&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="blog.yuanqinglong.cn/categories/javascript/"/>
+    
+    
+      <category term="逻辑运算符" scheme="blog.yuanqinglong.cn/tags/%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>关于ajax，大概需要了解哪些基础性的东西？</title>

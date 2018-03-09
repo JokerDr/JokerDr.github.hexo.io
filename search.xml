@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于 ‘ + ’ 与 new Date]]></title>
+    <url>%2F%E5%85%B3%E4%BA%8E-%E2%80%99-%E2%80%98-%E4%B8%8E-new-Date.html</url>
+    <content type="text"><![CDATA[在读《javascript高级程序设计（第三版）》时，遇到的一行代码var start = +new Date(); 那么，+new Date()是什么意思？虽然大概有些猜测,但，我还是决定查一查。Javascript中可以在某个元素前使用+号,这个操作是将该元素转换成Number类型，如果转换失败，会得到NAN.注：（适当的使用 运算符 可以简化 Number类型的转化过程）所以 +newDate将会调用Data.prototype上的valueOf,而且，查一查MDN，我们也可以知道，Data.prototype.valueOf()等价于Date.prototype.getTime().所以下列代码的效果是相同的：1234console.log(+new Date);console.log(new Date().getTime());console.log(new Date().valueOf());console.log(new Date()*1); 经过实际测试，以上所有代码都会返回当前时间的总毫秒数,（单纯的 new Date或new Date()会输出GMT时间， 如：Fri Mar 09 2018 22:17:43 GMT+0800 (中国标准时间)） 实际上，在上述代码中，不止+号，在代码后面加上*1或者/1达到相同的输出效果]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>逻辑运算符</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于ajax，大概需要了解哪些基础性的东西？]]></title>
     <url>%2F%E5%85%B3%E4%BA%8Eajax%EF%BC%8C%E5%A4%A7%E6%A6%82%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E5%93%AA%E4%BA%9B%E5%9F%BA%E7%A1%80%E6%80%A7%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%9F.html</url>
     <content type="text"><![CDATA[人总是健忘的，那么为什么不多动动手呢？比如说把知识记下来。我们总会或有或无的接触ajax技术，那么作为一名学习者，就有必要了解相关的知识ajax(客户端与服务器端异步的通信的技术)原理:相当于在用户和服务器之间加了—个中间层(AJAX引擎),通过创建一个XmlHttpRequest对象来向服务器发异步请求,通过回调在回调函数里进行dom操作.代码原理：1.第一步：创建XMLHttpRequest 对象xmlhttp=new XMLHttpRequest();（它有兼容性问题，在ie中用的是new ActiveXObject） 2.第二步：向服务器发送请求xmlhttp.open(&quot;GET/POST&quot;,url,true); xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);//POST时要加这句话 xmlhttp.send(); 3.第三步：执行回调，在回调函数中进行相应的dom操作xmlhttp.onreadystatechange=function() { if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)//判断状态码 { //就可以执行相应的dom操作 document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText; } } readyState有5种值：0: 请求未初始化 1: 服务器连接已建立 2: 请求已接收 3: 请求处理中 4: 请求已完成，且响应已就绪 status状态码常见的有：200 服务器成功返回 301 永久重定向 302 临时重定向 304 缓存 403 服务器拒绝访问 404 资源找不到 500 服务器错误 优与劣ajax的优点:&lt;1&gt;.无刷新更新数据。 &lt;2&gt;.异步与服务器通信。 &lt;3&gt;.前端和后端负载平衡。(减轻服务器的负担，AJAX的原则是“按需取数据”，可以最大程度的减少冗余请求和响应对服务器造成的负担) &lt;4&gt;.基于标准被广泛支持。 &lt;5&gt;.界面与应用分离。 ajax的缺点:&lt;1&gt;.AJAX干掉了Back和History功能，即对浏览器机制的破坏。 &lt;2&gt;.AJAX的安全问题。 &lt;3&gt;.违背URL和资源定位的初衷。 &lt;4&gt;.客户端过肥，太多客户端代码造成开发上的成本。]]></content>
