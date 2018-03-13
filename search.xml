@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[charAt与 indexOf与lastIndexOf]]></title>
+    <url>%2FcharAt%E4%B8%8E-indexOf%E4%B8%8ElastIndexOf.html</url>
+    <content type="text"><![CDATA[吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。访问字符串中特定字符的方法是：charAt() &amp; charCodeAt() var stringValue = "hello world"; alert(stringValue.charAt(1));//"e" alert(stringValue.charCodeAt(1));//"101" 上述代码中1)前者charAt()输出的是指定位置的 字符2)后者charCodeAt()输出的是指定位置的字符串的编码从字符串中查找子字符串的方法是：indexOf() &amp; lastIndexOf() var stringValue = "hello world"; alert(stringValue.indexOf("o"));//"4" alert(stringValue.lastIndexOf("o"));//"7" 上述代码中无论是indexOf()还是lastIndexOf()，返回的子字符串位置都是基于正向查询 (始于0) 。由此可知，若子字符串在源字符串中只出现过一次，则两种方法返回相同的结果。若未找到该字符串，则都返回-1而区别在于：1）前者indexOf()方法，是从开头向后搜索字符串2）后者lastIndexOf()方法，是从末尾向开头搜索字符串]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>字符串位置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于 ‘ + ’ 与 new Date]]></title>
     <url>%2F%E5%85%B3%E4%BA%8E-%E2%80%99-%E2%80%98-%E4%B8%8E-new-Date.html</url>
-    <content type="text"><![CDATA[在读《javascript高级程序设计（第三版）》时，遇到的一行代码var start = +new Date(); 那么，+new Date()是什么意思？虽然大概有些猜测,但，我还是决定查一查。Javascript中可以在某个元素前使用+号,这个操作是将该元素转换成Number类型，如果转换失败，会得到NAN.注：（适当的使用 运算符 可以简化 Number类型的转化过程）所以 +newDate将会调用Data.prototype上的valueOf,而且，查一查MDN，我们也可以知道，Data.prototype.valueOf()等价于Date.prototype.getTime().所以下列代码的效果是相同的：1234console.log(+new Date);console.log(new Date().getTime());console.log(new Date().valueOf());console.log(new Date()*1); 经过实际测试，以上所有代码都会返回当前时间的总毫秒数,（单纯的 new Date或new Date()会输出GMT时间， 如：Fri Mar 09 2018 22:17:43 GMT+0800 (中国标准时间)） 实际上，在上述代码中，不止+号，在代码后面加上*1或者/1达到相同的输出效果]]></content>
+    <content type="text"><![CDATA[在读《javascript高级程序设计（第三版）》时，遇到的一行代码var start = +new Date();那么，+new Date()是什么意思？虽然大概有些猜测,但，我还是决定查一查。Javascript中可以在某个元素前使用+号,这个操作是将该元素转换成Number类型，如果转换失败，会得到NAN.注：（适当的使用 运算符 可以简化 Number类型的转化过程）所以 +newDate将会调用Data.prototype上的valueOf,而且，查一查MDN，我们也可以知道，Data.prototype.valueOf()等价于Date.prototype.getTime().所以下列代码的效果是相同的：1234console.log(+new Date);console.log(new Date().getTime());console.log(new Date().valueOf());console.log(new Date()*1); 经过实际测试，以上所有代码都会返回当前时间的总毫秒数,（单纯的 new Date或new Date()会输出GMT时间， 如：Fri Mar 09 2018 22:17:43 GMT+0800 (中国标准时间)） 实际上，在上述代码中，不止+号，在代码后面加上*1或者/1达到相同的输出效果]]></content>
       <categories>
         <category>javascript</category>
       </categories>
