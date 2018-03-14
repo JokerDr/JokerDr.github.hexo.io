@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="blog.yuanqinglong.cn/"/>
-  <updated>2018-03-13T15:00:10.543Z</updated>
+  <updated>2018-03-14T15:46:21.055Z</updated>
   <id>blog.yuanqinglong.cn/</id>
   
   <author>
@@ -21,16 +21,13 @@
     <link href="blog.yuanqinglong.cn/charAt%E4%B8%8E-indexOf%E4%B8%8ElastIndexOf.html"/>
     <id>blog.yuanqinglong.cn/charAt与-indexOf与lastIndexOf.html</id>
     <published>2018-03-13T14:12:38.000Z</published>
-    <updated>2018-03-13T15:00:10.543Z</updated>
+    <updated>2018-03-14T15:46:21.055Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。</p></blockquote><ul><li><h5 id="访问字符串中特定字符的方法是：charAt-amp-charCodeAt"><a href="#访问字符串中特定字符的方法是：charAt-amp-charCodeAt" class="headerlink" title="访问字符串中特定字符的方法是：charAt() &amp; charCodeAt()"></a>访问字符串中特定字符的方法是：<code>charAt()</code> &amp; <code>charCodeAt()</code></h5><pre><code class="bash">var stringValue = <span class="string">"hello world"</span>;alert(stringValue.charAt(1));//<span class="string">"e"</span>alert(stringValue.charCodeAt(1));//<span class="string">"101"</span></code></pre><p>上述代码中<br>1)前者<code>charAt()</code>输出的是指定位置的 <strong>字符</strong><br>2)后者<code>charCodeAt()</code>输出的是指定位置的<strong>字符串的编码</strong></p></li><li><h5 id="从字符串中查找子字符串的方法是：indexOf-amp-lastIndexOf"><a href="#从字符串中查找子字符串的方法是：indexOf-amp-lastIndexOf" class="headerlink" title="从字符串中查找子字符串的方法是：indexOf() &amp; lastIndexOf()"></a>从字符串中查找子字符串的方法是：<code>indexOf()</code> &amp; <code>lastIndexOf()</code></h5><pre><code class="bash">var stringValue = <span class="string">"hello world"</span>;alert(stringValue.indexOf(<span class="string">"o"</span>));//<span class="string">"4"</span>alert(stringValue.lastIndexOf(<span class="string">"o"</span>));//<span class="string">"7"</span></code></pre><p>上述代码中<br>无论是<code>indexOf()</code>还是<code>lastIndexOf()</code>，<br>返回的子字符串位置都是基于<strong>正向查询</strong> (始于0) 。<br>由此可知，<br>若子字符串在源字符串中<code>只出现过一次</code>，则两种方法返回相同的结果。<br>若<code>未找到</code>该字符串，则都返回<code>-1</code><br>而区别在于：<br>1）前者<code>indexOf()</code>方法，是从开头向后搜索字符串<br>2）后者<code>lastIndexOf()</code>方法，是从末尾向开头搜索字符串</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。</p></blockquote><ul><li><h5 id="访问字符串中特定字符的方法是：charAt-amp-charCodeAt"><a href="#访问字符串中特定字符的方法是：charAt-amp-charCodeAt" class="headerlink" title="访问字符串中特定字符的方法是：charAt() &amp; charCodeAt()"></a>访问字符串中特定字符的方法是：<code>charAt()</code> &amp; <code>charCodeAt()</code></h5><a id="more"></a><pre><code class="bash">var stringValue = <span class="string">"hello world"</span>;alert(stringValue.charAt(1));//<span class="string">"e"</span>alert(stringValue.charCodeAt(1));//<span class="string">"101"</span></code></pre><p>上述代码中<br>1)前者<code>charAt()</code>输出的是指定位置的 <strong>字符</strong><br>2)后者<code>charCodeAt()</code>输出的是指定位置的<strong>字符串的编码</strong></p></li><li><h5 id="从字符串中查找子字符串的方法是：indexOf-amp-lastIndexOf"><a href="#从字符串中查找子字符串的方法是：indexOf-amp-lastIndexOf" class="headerlink" title="从字符串中查找子字符串的方法是：indexOf() &amp; lastIndexOf()"></a>从字符串中查找子字符串的方法是：<code>indexOf()</code> &amp; <code>lastIndexOf()</code></h5><pre><code class="bash">var stringValue = <span class="string">"hello world"</span>;alert(stringValue.indexOf(<span class="string">"o"</span>));//<span class="string">"4"</span>alert(stringValue.lastIndexOf(<span class="string">"o"</span>));//<span class="string">"7"</span></code></pre><p>上述代码中<br>无论是<code>indexOf()</code>还是<code>lastIndexOf()</code>，<br>返回的子字符串位置都是基于<strong>正向查询</strong> (始于0) 。<br>由此可知，<br>若子字符串在源字符串中<code>只出现过一次</code>，则两种方法返回相同的结果。<br>若<code>未找到</code>该字符串，则都返回<code>-1</code><br>而区别在于：<br>1）前者<code>indexOf()</code>方法，是从开头向后搜索字符串<br>2）后者<code>lastIndexOf()</code>方法，是从末尾向开头搜索字符串</p></li></ul>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;&lt;p&gt;吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。&lt;/p&gt;&lt;/blockquote&gt;&lt;ul&gt;&lt;li&gt;&lt;h5 id=&quot;访问字符串中特定字符的方法是：charAt-amp-charCodeAt&quot;&gt;&lt;a href=&quot;#访问字符串中特定字符
-      
+      &lt;blockquote&gt;&lt;p&gt;吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。&lt;/p&gt;&lt;/blockquote&gt;&lt;ul&gt;&lt;li&gt;&lt;h5 id=&quot;访问字符串中特定字符的方法是：charAt-amp-charCodeAt&quot;&gt;&lt;a href=&quot;#访问字符串中特定字符的方法是：charAt-amp-charCodeAt&quot; class=&quot;headerlink&quot; title=&quot;访问字符串中特定字符的方法是：charAt() &amp;amp; charCodeAt()&quot;&gt;&lt;/a&gt;访问字符串中特定字符的方法是：&lt;code&gt;charAt()&lt;/code&gt; &amp;amp; &lt;code&gt;charCodeAt()&lt;/code&gt;&lt;/h5&gt;
     
     </summary>
     
