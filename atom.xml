@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="blog.yuanqinglong.cn/"/>
-  <updated>2018-03-14T15:46:21.055Z</updated>
+  <updated>2018-03-15T15:38:39.347Z</updated>
   <id>blog.yuanqinglong.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>找到数组的最值 </title>
+    <link href="blog.yuanqinglong.cn/%E6%89%BE%E5%88%B0%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%80%BC.html"/>
+    <id>blog.yuanqinglong.cn/找到数组的最值.html</id>
+    <published>2018-03-15T14:20:42.000Z</published>
+    <updated>2018-03-15T15:38:39.347Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。</p></blockquote><p>在一个数组中找到最值，书中给了我们这样的一个方法（以最大值为例）：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var Values = [1,2,3];</span><br><span class="line">var max = Math.max.apply(Math,Values);</span><br><span class="line">var max = Math.max.apply(null,Values);</span><br></pre></td></tr></table></figure><p> <br></p><ul><li><p>那么：<br>   1）问题一，为什么是 <strong><code>Math.max.apply()</code></strong> ,而非 <strong><code>Math.max()</code></strong>?</p><p> 答：<code>max()</code>方法本身需要大于等于2个的纯数字参数</p><pre><code>比如：</code></pre></li></ul><pre><code>               console.log(Math.max(10,20,30))//&quot;30&quot;               console.log(Math.max(10,20))//&quot;20&quot;                console.log(Math.max(a,b));//ReferenceError: a is not defined   很明显，**`Math.max()`** 的Values，只是一个变量，无法满足大于等于2，以及纯数字的两个条件，所以为满足要求（求数组里的最值），**`Math.max.apply()`**无疑是非常好的方法：&lt;br /&gt;2）问题二，为什么是 **`Math.max.apply()`**,而非是 **`Math.max().apply()`**答：我们要明白两个知识点 【1】 **`max()`** 与 **`max`** 的区别，函数名本质上是一个指向存储函数代码的内存地址的指针，单纯的写函数名并不会而函数名后面加括号如： **`max()`** ，则是对函数的调用执行。 【2】 **`apply()`**  、 **`call()`** 是每个函数都包含的非继承的方法。作用是在 **特定的作用域** 中 **调用函数**。 前者可以接受两个参数，后者可以接受两个及两个以上的参数。二者的第一个参数都是设置函数体内的 **`This`** 指向，即 **“ 特定的作用域 ”**。只写一个参数的情况下，默认设置的是 **`This`** 指向。 而 **调用函数**，等价于函数名后面加括号的效果。 3）问题三， **`Math.max.apply(null,Values)`** 与 **`Math.max.apply(Math,Values)`** 区别？ 答：没区别。因为第一个参数是 **特定的作用域** （也就是this指向），又因为，null，默认是前面的对象。而在本题中，前面的对象是Math，所以显而易见，二者结果并无区别。</code></pre><p>，</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;&lt;p&gt;吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;在一个数组中找到最值，书中给了我们这样的一个方法（以最大值为例）：&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;ta
+      
+    
+    </summary>
+    
+      <category term="javascript" scheme="blog.yuanqinglong.cn/categories/javascript/"/>
+    
+    
+      <category term="apply、call" scheme="blog.yuanqinglong.cn/tags/apply%E3%80%81call/"/>
+    
+  </entry>
   
   <entry>
     <title>charAt与 indexOf与lastIndexOf </title>
