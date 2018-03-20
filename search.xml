@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[改变浏览器位置]]></title>
+    <url>%2F%E6%94%B9%E5%8F%98%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%8D%E7%BD%AE.html</url>
+    <content type="text"><![CDATA[吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。实际上，就是改变浏览器的url，so，有哪些方法呢？1231) location.assign("http://www.wrox.com")2) window.location = "http://www.wrox.com"3) location.href = "http://www.wrox.com" 当然，2）、3）其实都是调用了assign()方法的，只不过是形式不一样而已， 另外，每次修改location的属性时，如hostname,path,port等时(hash除外)，页面都会以新的URL载入， 注：无论以何种方式修改URL。都会在历史记录中生成一条新的纪录 若要禁止这种行为（即生成一条新的纪录），可以使用replace()方法，该方法接受一个参数，即要导航到的URL。 12location.replace("http://www.wrox.com"); 结果就是，同样会导致浏览器的位置改变，但是不会在历史记录生成新的纪录 最后一种改变浏览器位置的方法：reload reload //重新加载，可能是从个缓存中加载 reload(true); //强制加载，即从服务器端加载 注意：reload()调用后，也有可能不会立即执行，它取决于网络资源或系统延迟等，所以最好将reload()放在代码的最后一行]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>loaction</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[找到数组的最值]]></title>
     <url>%2F%E6%89%BE%E5%88%B0%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%80%BC.html</url>
     <content type="text"><![CDATA[吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。在一个数组中找到最值，书中给了我们这样的一个方法（以最大值为例）：123var Values = [1,2,3];var max = Math.max.apply(Math,Values);var max = Math.max.apply(null,Values); 那么：1）问题一，为什么是 Math.max.apply() ,而非 Math.max()?答： max()方法本身需要大于等于2个的纯数字参数比如： 123console.log(Math.max(10,20,30))//"30"console.log(Math.max(10,20))//"20" console.log(Math.max(a,b));//ReferenceError: a is not defined 很明显，Math.max() 的Values，只是一个变量，无法满足大于等于2，以及纯数字的两个条件，所以为满足要求（求数组里的最值），Math.max.apply()无疑是非常好的方法： 2）问题二，为什么是 Math.max.apply(),而非是 Math.max().apply()答：我们要明白两个知识点 【1】 max() 与 max 的区别，函数名本质上是一个指向存储函数代码的内存地址的指针，单纯的写函数名并不会而函数名后面加括号如： max() ，则是对函数的调用执行。 【2】 apply() 、 call() 是每个函数都包含的非继承的方法。作用是在 特定的作用域 中 调用函数。 前者可以接受两个参数，后者可以接受两个及两个以上的参数。二者的第一个参数都是设置函数体内的 This 指向，即 “ 特定的作用域 ”。只写一个参数的情况下，默认设置的是 This 指向。 而 调用函数，等价于函数名后面加括号的效果。3）问题三， Math.max.apply(null,Values) 与 Math.max.apply(Math,Values) 区别？答：没区别。 因为第一个参数是 特定的作用域 （也就是this指向），又因为，null，默认是前面的对象。而在本题中，前面的对象是Math，所以显而易见，二者结果并无区别。，]]></content>
