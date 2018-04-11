@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[解决输入框长度maxLength的兼容性问题]]></title>
+    <url>%2F%E8%A7%A3%E5%86%B3%E8%BE%93%E5%85%A5%E6%A1%86%E9%95%BF%E5%BA%A6maxLength%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98.html</url>
+    <content type="text"><![CDATA[最近在忙着做些东西，差点荒废了我的博客，随便写点什么吧在input标签中，只需要设置maxlength=”*”即可，但是在textarea标签中，IE9及IE9以下浏览器是不支持的，IE10、IE11则支持，估计后续的版本应该都会支持12345&lt;textarea id="taContent" rows="3" maxlength="20" onchange="this.value=this.value.substring(0, 20)"onkeydown="this.value=this.value.substring(0, 20)" onkeyup="this.value=this.value.substring(0, 20)" &gt;&lt;/textarea&gt; 备注：onchange、onkeydown、onkeyup三者缺一不可。 如省略onchange，当你用负责功能，此时一直按着ctrl不松开，鼠标去点击其他地方（焦点移出textarea）时，不会自动取消超出部分； 如省略onkeydown，猛敲的时候会有很多个字符突然不见了； 如省略onkeyup，原想预计20的情况下，会变成21，并且最后一个字符是最后敲进去的。 Maxlength 也不可省略，加上maxlength 当碰到IE10及以上版本时，可以完美的实现限制输入框字数的功能。不想其他低版本的IE浏览器还可以出现一个字母后消失。 本方法参考自： http://www.thylx.net/newsdetail.aspx?id=37]]></content>
+      <categories>
+        <category>HTML</category>
+      </categories>
+      <tags>
+        <tag>maxLength</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[改变浏览器位置]]></title>
     <url>%2F%E6%94%B9%E5%8F%98%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%8D%E7%BD%AE.html</url>
     <content type="text"><![CDATA[吾日三省吾身，读《javascript高级程序设计（第三版）》随笔。实际上，就是改变浏览器的url，so，有哪些方法呢？1231) location.assign("http://www.wrox.com")2) window.location = "http://www.wrox.com"3) location.href = "http://www.wrox.com" 当然，2）、3）其实都是调用了assign()方法的，只不过是形式不一样而已， 另外，每次修改location的属性时，如hostname,path,port等时(hash除外)，页面都会以新的URL载入， 注：无论以何种方式修改URL。都会在历史记录中生成一条新的纪录 若要禁止这种行为（即生成一条新的纪录），可以使用replace()方法，该方法接受一个参数，即要导航到的URL。 12location.replace("http://www.wrox.com"); 结果就是，同样会导致浏览器的位置改变，但是不会在历史记录生成新的纪录 最后一种改变浏览器位置的方法：reload reload //重新加载，可能是从个缓存中加载 reload(true); //强制加载，即从服务器端加载 注意：reload()调用后，也有可能不会立即执行，它取决于网络资源或系统延迟等，所以最好将reload()放在代码的最后一行]]></content>
