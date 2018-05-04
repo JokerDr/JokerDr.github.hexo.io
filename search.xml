@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[算法基础之二分查找]]></title>
+    <url>%2F%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E4%B9%8B%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html</url>
+    <content type="text"><![CDATA[最近在看《算法基础·打开算法之门》（毕竟程序猿的算法不能太差…）人总是健忘的，所以我决定将我收获的东西记录下来那么，首先，就是你了，最基础的二分查找！关于二分查找，可以拥有如下叙述:任意情况下，我们仅仅考虑某个子数组，也就是说，介于某两个索引之间的部分数组，将这两个索引依次记为p和r。初始时，p=1,r=n，因此开始时，子数组为整个完整数组，我们反复地将数组规模减半，直到一下任意一种情况发生：要么找到了要查找的元素，要么当前子数组为空（p&gt;r）。反复对子数组执行减半操作需要的时间花费是O(lgn)case-1逻辑：程序：binary-search(arr,n,x)输入：arr:一个数组n:数组中元素的个数x要查找的值输出满足条件的arr[i]的索引i，特殊值‘not found’（相对于数组的任意无效索引值）具体步骤1）将p赋值为1,r赋值为n2）只要p &lt; = r,执行如下操作：A.将q赋值为(p + r) / 2 ———— ps:向下取整B.如果A[q] = x,那么返回q。C.否则（A[q] ! = x）,如果A[q]&gt;x,那么将r赋值为为q-1D.否则（A[q] &lt; x），那么将p赋值为q+13）返回“not found”js代码实现12345678910111213141516171819//默认由小到大排列数据function binary-search(arr,n,x)&#123; var p = 0; var r = n-1; if(p &lt; = r)&#123; var q = Math.floor((p+r)/2); if(arr[q] == x)&#123; return q; &#125;else&#123; if(arr[q]&gt;x)&#123; r = q - 1; //真实上限索引要比x索引小，所以需要对数组上限重新取半赋值； &#125;else&#123; p = q + 1 //真实下限索引要比x索引大，所以需要对数组上限重新取半赋值； &#125; &#125; &#125;else&#123; return 'NOT FOUND !'; &#125;&#125; case-2 (递归的方式)逻辑：程序：recursive-binary-search(arr,p,r,x)输入输出 相关变量同上文 增加p ,r 为数组arr的开头结尾索引 具体步骤 1）如果p &gt; r,那么返回“not found” 2）否则(p &lt; = r),执行如下操作： A.将q赋值为(p + r) / 2 ———— ps:向下取整 B.如果A[q] = x,那么返回q。 C.否则（A[q] ! = x）,如果A[q] &gt; x,那么返回一个 recursive-binary-search(arr,p,q-1,x) D.否则（A[q] &lt; x），那么返回一个 recursive-binary-search(arr,q+1,r,x) js代码实现1234567891011121314151617//默认由小到大排列数据function recursive-binary-search(arr,p,r,x)&#123; if(p &gt; r)&#123; return 'NOT FOUND !'; &#125;else&#123; //p &lt; = r var q = Math.floor((p + r) / 2); if(arr[q] == x)&#123; return q; &#125;else&#123; if(arr[q] &gt; x)&#123; return recursive-binary-search(arr,p,q-1,x); //真实上限索引要比x索引小，所以需要对数组上限重新取半赋值； &#125;else&#123; return recursive-binary-search(arr,q+1,r,x); //真实下限索引要比x索引大，所以需要对数组上限重新取半赋值； &#125; &#125; &#125; &#125; 当然，以上的代码也许会有错误（好像没有…），因为只是单纯根据逻辑撸码，具体事件具体分析。]]></content>
+      <categories>
+        <category>算法基础</category>
+      </categories>
+      <tags>
+        <tag>二分查找</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[解决输入框长度maxLength的兼容性问题]]></title>
     <url>%2F%E8%A7%A3%E5%86%B3%E8%BE%93%E5%85%A5%E6%A1%86%E9%95%BF%E5%BA%A6maxLength%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98.html</url>
     <content type="text"><![CDATA[最近在忙着做些东西，差点荒废了我的博客，随便写点什么吧在input标签中，只需要设置maxlength=”*”即可，但是在textarea标签中，IE9及IE9以下浏览器是不支持的，IE10、IE11则支持，估计后续的版本应该都会支持12345&lt;textarea id="taContent" rows="3" maxlength="20" onchange="this.value=this.value.substring(0, 20)"onkeydown="this.value=this.value.substring(0, 20)" onkeyup="this.value=this.value.substring(0, 20)" &gt;&lt;/textarea&gt; 备注：onchange、onkeydown、onkeyup三者缺一不可。 如省略onchange，当你用负责功能，此时一直按着ctrl不松开，鼠标去点击其他地方（焦点移出textarea）时，不会自动取消超出部分； 如省略onkeydown，猛敲的时候会有很多个字符突然不见了； 如省略onkeyup，原想预计20的情况下，会变成21，并且最后一个字符是最后敲进去的。 Maxlength 也不可省略，加上maxlength 当碰到IE10及以上版本时，可以完美的实现限制输入框字数的功能。不想其他低版本的IE浏览器还可以出现一个字母后消失。 本方法参考自： http://www.thylx.net/newsdetail.aspx?id=37]]></content>
