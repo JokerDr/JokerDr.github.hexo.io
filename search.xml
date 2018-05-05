@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[算法基础———选择排序]]></title>
+    <url>%2F%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E2%80%94%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.html</url>
+    <content type="text"><![CDATA[日积跬步，以期千里。《算法基础·打开算法之门》小札概念首先声明array[i]是目前所看到的子数组中最小的元素，然后扫描数组的剩余部分，每当发现一个有一个元素小于当前最小的元素时，我们就更新最小元素的索引逻辑1.令i从0到n-1依次取值A. 将smallest赋值为 i.B. 令j从i+1到n依次取值：i. 如果A[j] &lt; A[smallest],那么将smallest赋值为j。C. 交换 A[i] 与 A[smallest]的值复杂度选择排序的时间复杂度取决于外层循环的索引i。时间复杂度O(n^2)空间复杂度O（1）js程序代码1234567891011121314151617181920function selectionSort(arr) &#123; var len = arr.length; var smallest, temp; console.time('选择排序耗时'); for (var i = 0; i &lt; len - 1; i++) &#123; smallest = i; for (var j = i + 1; j &lt; len; j++) &#123; if (arr[j] &lt; arr[smallest]) &#123; //寻找最小的数 smallest = j; //将最小数的索引保存 &#125; &#125; temp = arr[i]; arr[i] = arr[smallest]; arr[smallest] = temp; &#125; console.timeEnd('选择排序耗时'); return arr;&#125;var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];console.log(selectionSort(arr)); 其实选择排序适合小数据排序，具体这个小数据有多小呢，简单的测试了一下，在1000条以内的数据，选择排序更胜冒泡排序。]]></content>
+      <categories>
+        <category>算法基础</category>
+      </categories>
+      <tags>
+        <tag>选择排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[算法基础之二分查找]]></title>
     <url>%2F%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E4%B9%8B%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html</url>
     <content type="text"><![CDATA[最近在看《算法基础·打开算法之门》（毕竟程序猿的算法不能太差…）人总是健忘的，所以我决定将我收获的东西记录下来那么，首先，就是你了，最基础的二分查找！关于二分查找，可以拥有如下叙述:任意情况下，我们仅仅考虑某个子数组，也就是说，介于某两个索引之间的部分数组，将这两个索引依次记为p和r。初始时，p=1,r=n，因此开始时，子数组为整个完整数组，我们反复地将数组规模减半，直到一下任意一种情况发生：要么找到了要查找的元素，要么当前子数组为空（p&gt;r）。反复对子数组执行减半操作需要的时间花费是O(lgn)case-1逻辑：程序：binary-search(arr,n,x)输入：arr:一个数组n:数组中元素的个数x要查找的值输出满足条件的arr[i]的索引i，特殊值‘not found’（相对于数组的任意无效索引值）具体步骤1）将p赋值为1,r赋值为n2）只要p &lt; = r,执行如下操作：A.将q赋值为(p + r) / 2 ———— ps:向下取整B.如果A[q] = x,那么返回q。C.否则（A[q] ! = x）,如果A[q]&gt;x,那么将r赋值为为q-1D.否则（A[q] &lt; x），那么将p赋值为q+13）返回“not found”js代码实现12345678910111213141516171819//默认由小到大排列数据function binary-search(arr,n,x)&#123; var p = 0; var r = n-1; if(p &lt; = r)&#123; var q = Math.floor((p+r)/2); if(arr[q] == x)&#123; return q; &#125;else&#123; if(arr[q]&gt;x)&#123; r = q - 1; //真实上限索引要比x索引小，所以需要对数组上限重新取半赋值； &#125;else&#123; p = q + 1 //真实下限索引要比x索引大，所以需要对数组上限重新取半赋值； &#125; &#125; &#125;else&#123; return 'NOT FOUND !'; &#125;&#125; case-2 (递归的方式)逻辑：程序：recursive-binary-search(arr,p,r,x)输入输出 相关变量同上文 增加p ,r 为数组arr的开头结尾索引 具体步骤 1）如果p &gt; r,那么返回“not found” 2）否则(p &lt; = r),执行如下操作： A.将q赋值为(p + r) / 2 ———— ps:向下取整 B.如果A[q] = x,那么返回q。 C.否则（A[q] ! = x）,如果A[q] &gt; x,那么返回一个 recursive-binary-search(arr,p,q-1,x) D.否则（A[q] &lt; x），那么返回一个 recursive-binary-search(arr,q+1,r,x) js代码实现1234567891011121314151617//默认由小到大排列数据function recursive-binary-search(arr,p,r,x)&#123; if(p &gt; r)&#123; return 'NOT FOUND !'; &#125;else&#123; //p &lt; = r var q = Math.floor((p + r) / 2); if(arr[q] == x)&#123; return q; &#125;else&#123; if(arr[q] &gt; x)&#123; return recursive-binary-search(arr,p,q-1,x); //真实上限索引要比x索引小，所以需要对数组上限重新取半赋值； &#125;else&#123; return recursive-binary-search(arr,q+1,r,x); //真实下限索引要比x索引大，所以需要对数组上限重新取半赋值； &#125; &#125; &#125; &#125; 当然，以上的代码也许会有错误（好像没有…），因为只是单纯根据逻辑撸码，具体事件具体分析。]]></content>
