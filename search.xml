@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[算法基础———————插入排序]]></title>
+    <url>%2F%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.html</url>
+    <content type="text"><![CDATA[概念在归并排序中，我们是用一种被称为分治法的通用模式，在分治法中，我们即将原问题分解为类似原问题的子问题，并递归的求解这些子问题，然后再归并这些子问题的解。复杂度时间复杂度 对于所有情况，它仅有一个O(nlgn)空间复杂度O（n）原址非原址js程序代码12345678910111213141516 function insertionSort(array) &#123; console.time('插入排序耗时：'); for (var i = 1; i &lt; array.length; i++) &#123; var key = array[i]; var j = i - 1; while ( array[j] &gt; key) &#123; array[j + 1] = array[j]; j--; &#125; array[j + 1] = key; &#125; console.timeEnd('插入排序耗时：'); return array;&#125;var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];console.log(insertionSort(arr));]]></content>
+      <categories>
+        <category>算法基础</category>
+      </categories>
+      <tags>
+        <tag>插入排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[算法基础———选择排序]]></title>
     <url>%2F%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E2%80%94%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.html</url>
     <content type="text"><![CDATA[日积跬步，以期千里。《算法基础·打开算法之门》小札概念首先声明array[i]是目前所看到的子数组中最小的元素，然后扫描数组的剩余部分，每当发现一个有一个元素小于当前最小的元素时，我们就更新最小元素的索引逻辑1.令i从0到n-1依次取值A. 将smallest赋值为 i.B. 令j从i+1到n依次取值：i. 如果A[j] &lt; A[smallest],那么将smallest赋值为j。C. 交换 A[i] 与 A[smallest]的值复杂度选择排序的时间复杂度取决于外层循环的索引i。时间复杂度O(n^2)空间复杂度O（1）js程序代码1234567891011121314151617181920function selectionSort(arr) &#123; var len = arr.length; var smallest, temp; console.time('选择排序耗时'); for (var i = 0; i &lt; len - 1; i++) &#123; smallest = i; for (var j = i + 1; j &lt; len; j++) &#123; if (arr[j] &lt; arr[smallest]) &#123; //寻找最小的数 smallest = j; //将最小数的索引保存 &#125; &#125; temp = arr[i]; arr[i] = arr[smallest]; arr[smallest] = temp; &#125; console.timeEnd('选择排序耗时'); return arr;&#125;var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];console.log(selectionSort(arr)); 其实选择排序适合小数据排序，具体这个小数据有多小呢，简单的测试了一下，在1000条以内的数据，选择排序更胜冒泡排序。]]></content>
