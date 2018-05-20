@@ -4,19 +4,39 @@
 
     
   <url>
+    <loc>blog.yuanqinglong.cn/HTML-5-%E6%A0%B7%E5%BC%8F%E6%8C%87%E5%8D%97%E5%92%8C%E4%BB%A3%E7%A0%81%E7%BA%A6%E5%AE%9A.html</loc>
+    <lastmod>2018-05-19T15:40:23.852Z</lastmod>
+    <data>
+        <display>
+        <title> HTML(5) 样式指南和代码约定</title>
+        <pubTime>2018-05-19T11:43:13.000Z</pubTime>
+        
+        <tag>html5</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端技术" url="blog.yuanqinglong.cn/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>blog.yuanqinglong.cn/%E5%89%8D%E7%AB%AF%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E9%82%A3%E4%BA%9B%E6%96%B9%E5%BC%8F.html</loc>
-    <lastmod>2018-05-18T15:34:05.373Z</lastmod>
+    <lastmod>2018-05-19T07:42:59.806Z</lastmod>
     <data>
         <display>
         <title> 前端提交数据的那些方式</title>
         <pubTime>2018-05-18T13:40:11.000Z</pubTime>
         
-        <tag>变量的解构与赋值</tag>
+        <tag>POST&amp;GET&amp;PUT&amp;DELETE</tag>
          
          
            
              
-              <breadCrumb title="ES6" url="blog.yuanqinglong.cn/categories/ES6/"/>
+              <breadCrumb title="POST&amp;GET&amp;PUT&amp;DELETE" url="blog.yuanqinglong.cn/categories/POST-GET-PUT-DELETE/"/>
           
         </display>
     </data>

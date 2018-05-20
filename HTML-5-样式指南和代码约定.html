@@ -1,0 +1,864 @@
+<!DOCTYPE html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="icon" type="image/png" sizes="32x32" href="/imgs/favicon-32x32-next.ico?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/imgs/favicon-16x16-next.ico?v=5.1.4"><meta name="keywords" content="html5,"><link rel="alternate" href="/atom.xml" title="西伯利亚大尾巴狼" type="application/atom+xml"><meta name="description" content="本篇内容转载自w3c良好且优秀的代码习惯是必要的，无论是开发成本上，还是从赏心悦目的程度上HTML 代码约定web 开发者常常不确定在 HTML 中使用的代码样式和语法。通过 HTML5，您必须创建属于自己的最佳实践、样式指南和代码约定。智能且有未来保证对样式的合乎逻辑的使用，可以令其他人更容易理解和使用您的 HTML。在未来，诸如 XML 阅读器之类的程序，也许需要阅读您的 HTML。使用格式良"><meta name="keywords" content="html5"><meta property="og:type" content="article"><meta property="og:title" content=" HTML(5) 样式指南和代码约定"><meta property="og:url" content="blog.yuanqinglong.cn/HTML-5-样式指南和代码约定.html"><meta property="og:site_name" content="西伯利亚大尾巴狼"><meta property="og:description" content="本篇内容转载自w3c良好且优秀的代码习惯是必要的，无论是开发成本上，还是从赏心悦目的程度上HTML 代码约定web 开发者常常不确定在 HTML 中使用的代码样式和语法。通过 HTML5，您必须创建属于自己的最佳实践、样式指南和代码约定。智能且有未来保证对样式的合乎逻辑的使用，可以令其他人更容易理解和使用您的 HTML。在未来，诸如 XML 阅读器之类的程序，也许需要阅读您的 HTML。使用格式良"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2018-05-19T15:40:23.852Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content=" HTML(5) 样式指南和代码约定"><meta name="twitter:description" content="本篇内容转载自w3c良好且优秀的代码习惯是必要的，无论是开发成本上，还是从赏心悦目的程度上HTML 代码约定web 开发者常常不确定在 HTML 中使用的代码样式和语法。通过 HTML5，您必须创建属于自己的最佳实践、样式指南和代码约定。智能且有未来保证对样式的合乎逻辑的使用，可以令其他人更容易理解和使用您的 HTML。在未来，诸如 XML 阅读器之类的程序，也许需要阅读您的 HTML。使用格式良"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!0,onmobile:!0},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="blog.yuanqinglong.cn/HTML-5-样式指南和代码约定.html"><title>HTML(5) 样式指南和代码约定 | 西伯利亚大尾巴狼</title><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?1be86e2b6a4abba6c4a05e3af869e5a0";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><a href="https://github.com/JokerDr"><img style="position:absolute;top:0;right:0;border:0" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">西伯利亚大尾巴狼</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">子非鱼，安知鱼之乐？</h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="blog.yuanqinglong.cn/HTML-5-样式指南和代码约定.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="袁庆龙"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/me.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="西伯利亚大尾巴狼"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">HTML(5) 样式指南和代码约定</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-19T19:43:13+08:00">2018-05-19 </time><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i> </span><span class="post-meta-item-text">更新于&#58;</span> <time title="更新于" itemprop="dateModified" datetime="2018-05-19T23:40:23+08:00">2018-05-19 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端技术/" itemprop="url" rel="index"><span itemprop="name">前端技术</span> </a></span></span><span id="/HTML-5-样式指南和代码约定.html" class="leancloud_visitors" data-flag-title=" HTML(5) 样式指南和代码约定"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数&#58;</span> <span class="leancloud-visitors-count"></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计&#58;</span> <span title="字数统计">0 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">1</span></div></div></header><div class="post-body" itemprop="articleBody"><blockquote><p>本篇内容转载自w3c<br>良好且优秀的代码习惯是必要的，无论是开发成本上，还是从赏心悦目的程度上</p></blockquote><h3 id="HTML-代码约定"><a href="#HTML-代码约定" class="headerlink" title="HTML 代码约定"></a>HTML 代码约定</h3><p>web 开发者常常不确定在 HTML 中使用的代码样式和语法。<br>通过 HTML5，您必须创建属于自己的最佳实践、样式指南和代码约定。<br>智能且有未来保证对样式的合乎逻辑的使用，可以令其他人更容易理解和使用您的 HTML。<br><br>在未来，诸如 XML 阅读器之类的程序，也许需要阅读您的 HTML。<br>使用格式良好的“近似 XHTML 的”语法，能够更智能。</p><h5 id="注释："><a href="#注释：" class="headerlink" title="注释："></a>注释：</h5><ul><li>请始终保持您的样式智能、整洁、纯净、格式良好。<br>请使用正确的文档类型请始终在文档的首行声明文档类型：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果您一贯坚持小写标签，那么可以使用：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="请使用小写元素名"><a href="#请使用小写元素名" class="headerlink" title="请使用小写元素名"></a>请使用小写元素名</h5><p>HTML5 允许在元素名中使用混合大小写字母。<br>我们推荐使用小写元素名：</p>
+<ul>
+<li>混合大小写名称并不好</li>
+<li>开发者习惯使用小写名（比如在 XHTML 中）</li>
+<li>小写更起来更纯净</li>
+<li>小写更易书写</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//不太好</span><br><span class="line">    &lt;SECTION&gt; </span><br><span class="line">    &lt;p&gt;This is a paragraph.&lt;/p&gt;</span><br><span class="line">    &lt;/SECTION&gt;</span><br><span class="line"></span><br><span class="line">    //很糟糕：</span><br><span class="line">    &lt;Section&gt; </span><br><span class="line">    &lt;p&gt;This is a paragraph.&lt;/p&gt;</span><br><span class="line">    &lt;/SECTION&gt;</span><br><span class="line"></span><br><span class="line">    还不错：</span><br><span class="line">    &lt;section&gt; </span><br><span class="line">    &lt;p&gt;This is a paragraph.&lt;/p&gt;</span><br><span class="line">    &lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="关闭所有-HTML-元素"><a href="#关闭所有-HTML-元素" class="headerlink" title="关闭所有 HTML 元素"></a>关闭所有 HTML 元素</h5><p>在 HTML5 中，您不必关闭所有元素（例如 <code>&lt;p&gt;</code> 元素）<br><br>我们建议关闭所有 HTML 元素：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//看起来不好：</span><br><span class="line">&lt;section&gt;</span><br><span class="line">&lt;p&gt;This is a paragraph.</span><br><span class="line">&lt;p&gt;This is a paragraph.</span><br><span class="line">&lt;/section&gt;</span><br><span class="line">  </span><br><span class="line">//看起来不错：</span><br><span class="line">&lt;section&gt;</span><br><span class="line">&lt;p&gt;This is a paragraph.&lt;/p&gt;</span><br><span class="line">&lt;p&gt;This is a paragraph.&lt;/p&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="关闭空的-HTML-元素"><a href="#关闭空的-HTML-元素" class="headerlink" title="关闭空的 HTML 元素"></a>关闭空的 HTML 元素</h5><p>在 HTML5 中，关闭空元素是可选的。<br><br><br>允许这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>也允许这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset=<span class="string">"utf-8"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>斜杠（<code>/</code>）在 XHTML 和 XML 中是必需的。<br><br><br>如果您期望 XML 软件来访问您的页面，保持这个习惯是个好主意。</p>
+<h5 id="使用小写属性名"><a href="#使用小写属性名" class="headerlink" title="使用小写属性名"></a>使用小写属性名</h5><p>HTML5 允许大小写混合的属性名。<br><br><br>我们建议使用小写属性名：</p>
+<ul>
+<li>混合属性名并不好</li>
+<li>开发者习惯于使用小写属性名（比如在 XHTML 中）</li>
+<li>小写属性名看情况更纯净</li>
+<li>小写属性名更易书写</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//看起来不好：</span><br><span class="line">&lt;div CLASS=<span class="string">"menu"</span>&gt;</span><br><span class="line"></span><br><span class="line">//看起来不错：</span><br><span class="line">&lt;div class=<span class="string">"menu"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="属性值加引号"><a href="#属性值加引号" class="headerlink" title="属性值加引号"></a>属性值加引号</h5><p>HTML5 允许不加引号的属性值。<br><br><br>我们推荐属性值加引号：</p>
+<ul>
+<li>如果属性值包含值，则必须使用引号</li>
+<li>混合样式绝对不好</li>
+<li>加引号的值更易阅读</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//这个属性值无效，因为值中包含空格：</span><br><span class="line">&lt;table class=table striped&gt;</span><br><span class="line"></span><br><span class="line">//这样是有效的：</span><br><span class="line">&lt;table class=<span class="string">"table striped"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="必需的属性"><a href="#必需的属性" class="headerlink" title="必需的属性"></a>必需的属性</h5><p>请始终对图像使用 alt 属性。当图像无法显示时该属性很重要。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"html5.gif"</span> alt=<span class="string">"HTML5"</span> style=<span class="string">"width:128px;height:128px"</span>&gt;</span><br></pre></td></tr></table></figure><p></p>
+<p>#####请始终定义图像尺寸。<br>这样做会减少闪烁，因为浏览器会在图像加载之前为图像预留空间。<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"html5.gif"</span> alt=<span class="string">"HTML5"</span> style=<span class="string">"width:128px;height:128px"</span>&gt;</span><br></pre></td></tr></table></figure><p></p>
+<h5 id="空格和等号"><a href="#空格和等号" class="headerlink" title="空格和等号"></a>空格和等号</h5><p>等号两边的空格是合法的：<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel = <span class="string">"stylesheet"</span> href = <span class="string">"styles.css"</span>&gt;</span><br></pre></td></tr></table></figure><p></p>
+<p>但是精简空格更易阅读， But space-less is easier to read, and groups entities better together:<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"styles.css"</span>&gt;</span><br></pre></td></tr></table></figure><p></p>
+<h5 id="避免长代码行"><a href="#避免长代码行" class="headerlink" title="避免长代码行"></a>避免长代码行</h5><p>当使用 HTML 编辑器时，通过左右滚动来阅读 HTML 代码很不方便。<br><br>请尽量避免代码行超过 80 个字符。</p>
+<h5 id="空行和缩进"><a href="#空行和缩进" class="headerlink" title="空行和缩进"></a>空行和缩进</h5><p>请勿毫无理由地增加空行。<br></p>
+<ul>
+<li>为了提高可读性，请增加空行来分隔大型或逻辑代码块。</li>
+<li>为了提高可读性，请增加两个空格的缩进。请勿使用 TAB。</li>
+<li>请勿使用没有必要的空行和缩进。没有必要在短的和相关项目之间使用空行，也没有必要缩进每个元素：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//不必要：</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Famous Cities&lt;/1&gt;</span><br><span class="line"></span><br><span class="line">&lt;h2&gt;Tokyo&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;</span><br><span class="line">    Tokyo is the capital of Japan, the center of the Greater Tokyo Area,</span><br><span class="line">    and the most populous metropolitan area <span class="keyword">in</span> the world.</span><br><span class="line">    It is the seat of the Japanese government and the Imperial Palace,</span><br><span class="line">    and the home of the Japanese Imperial Family.</span><br><span class="line">&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">//更好：</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Famous Cities&lt;/1&gt;</span><br><span class="line">&lt;h2&gt;Tokyo&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;</span><br><span class="line">Tokyo is the capital of Japan, the center of the Greater Tokyo Area,</span><br><span class="line">and the most populous metropolitan area <span class="keyword">in</span> the world.</span><br><span class="line">It is the seat of the Japanese government and the Imperial Palace,</span><br><span class="line">and the home of the Japanese Imperial Family.</span><br><span class="line">&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">//表格示例：</span><br><span class="line">&lt;table&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">    &lt;th&gt;Name&lt;/th&gt;</span><br><span class="line">    &lt;th&gt;Description&lt;/th&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">    &lt;td&gt;A&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;Description of A&lt;/td&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">    &lt;td&gt;B&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;Description of B&lt;/td&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">//列表示例：</span><br><span class="line">&lt;ol&gt;</span><br><span class="line">&lt;li&gt;LondonA&lt;/li&gt;</span><br><span class="line">&lt;li&gt;Paris&lt;/li&gt;</span><br><span class="line">&lt;li&gt;Tokyo&lt;/li&gt;</span><br><span class="line">&lt;/ol&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="省略-和-？"><a href="#省略-和-？" class="headerlink" title="省略  和 ？"></a>省略 <html> 和 <body>？</body></html></h5><p>在 HTML5 标准中，能够省略 </p><html> 标签和 <body> 标签。<br><br>以下代码作为 HTML5 进行验证：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//示例</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Page Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;This is a heading&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;This is a paragraph.&lt;/p&gt;</span><br></pre></td></tr></table></figure><p></p>
+<p>我们不推荐省略 <code>&lt;html&gt;</code> 和 <code>&lt;body&gt;</code> 标签。<br></p>
+<p></p><html> 元素是文本的根元素。它是规定页面语言的理想位置。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en-US"</span>&gt;</span><br></pre></td></tr></table></figure><p></p>
+<p>对于可访问应用程序（屏幕阅读器）和搜索引擎，声明语言很重要。<br></p>
+<ul>
+<li>省略 <html> 或 <body> c可令 DOM 和 XML 软件崩溃。</body></html></li>
+<li>省略 <body> 会在老式浏览器（IE9）中产生错误。</body></li>
+<li>省略 <head>？</head></li>
+</ul>
+<h5 id="在-HTML5-标准中，-标签也能够被省略。"><a href="#在-HTML5-标准中，-标签也能够被省略。" class="headerlink" title="在 HTML5 标准中， 标签也能够被省略。"></a>在 HTML5 标准中，<head> 标签也能够被省略。</head></h5><p>默认地，浏览器会把 </p><body> 之前的所有元素添加到默认的 <head> 元素。<br><br>通过省略 <head> 标签，您能够降低 HTML 的复杂性：<br><br>示例:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;title&gt;Page Title&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;This is a heading&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;This is a paragraph.&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure><p></p>
+<ul>
+<li>注释：对于 web 开发者，省略标签的做法是陌生的。建立规则需要时间。</li>
+</ul>
+<h5 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h5><p><code>&lt;title&gt;</code>元素在 HTML5 中是必需的。请尽可能制作有意义的标题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;HTML5 Syntax and Coding Style&lt;/title&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="为了确保恰当的解释，以及正确的搜索引擎索引，在文档中对语言和字符编码的定义越早越好："><a href="#为了确保恰当的解释，以及正确的搜索引擎索引，在文档中对语言和字符编码的定义越早越好：" class="headerlink" title="为了确保恰当的解释，以及正确的搜索引擎索引，在文档中对语言和字符编码的定义越早越好："></a>为了确保恰当的解释，以及正确的搜索引擎索引，在文档中对语言和字符编码的定义越早越好：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en-US"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;HTML5 Syntax and Coding Style&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="HTML-注释"><a href="#HTML-注释" class="headerlink" title="HTML 注释"></a>HTML 注释</h5><p>短注释应该在单行中书写，并在 <code>&lt;!--</code> 之后增加一个空格，在 <code>&lt;!--</code> 之前增加一个空格：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- This is a comment --&gt;</span><br></pre></td></tr></table></figure>
+<p>长注释，跨越多行，应该通过 <code>&lt;!--</code> 和 <code>--&gt;</code> 在独立的行中书写：<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- </span><br><span class="line">This is a long comment example. This is a long comment example. This is a long comment example.</span><br><span class="line">This is a long comment example. This is a long comment example. This is a long comment example.</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure><p></p>
+<p>长注释更易观察，如果它们被缩进两个空格的话。</p>
+<h5 id="样式表"><a href="#样式表" class="headerlink" title="样式表"></a>样式表</h5><p>请使用简单的语法来链接样式表（type 属性不是必需的）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"styles.css"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>短规则可以压缩为一行，就像这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p.into &#123;font-family:<span class="string">"Verdana"</span>; font-size:16em;&#125;</span><br></pre></td></tr></table></figure>
+<p>长规则应该分为多行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  background-color: lightgrey;</span><br><span class="line">  font-family: <span class="string">"Arial Black"</span>, Helvetica, sans-serif;</span><br><span class="line">  font-size: 16em;</span><br><span class="line">  color: black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开括号与选择器位于同一行</li>
+<li>在开括号之前用一个空格</li>
+<li>使用两个字符的缩进</li>
+<li>在每个属性与其值之间使用冒号加一个空格</li>
+<li>在每个逗号或分号之后使用空格</li>
+<li>在每个属性值对（包括最后一个）之后使用分号</li>
+<li>只在值包含空格时使用引号来包围值</li>
+<li>把闭括号放在新的一行，之前不用空格</li>
+<li>避免每行超过 80 个字符</li>
+<li>注释：在逗号或分号之后添加空格，是所有书写类型的通用规则。</li>
+</ul>
+<h5 id="在-HTML-中加载-JavaScript"><a href="#在-HTML-中加载-JavaScript" class="headerlink" title="在 HTML 中加载 JavaScript"></a>在 <code>HTML</code> 中加载 JavaScript</h5><p>请使用简单的语法来加载外部脚本（type 属性不是必需的）：<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"myscript.js"</span>&gt;</span><br></pre></td></tr></table></figure><p></p>
+<h5 id="通过-JavaScript-访问-HTML-元素"><a href="#通过-JavaScript-访问-HTML-元素" class="headerlink" title="通过 JavaScript 访问 HTML 元素"></a>通过 JavaScript 访问 HTML 元素<br></h5><p>使用“不整洁”的 HTML 样式的后果，是可能会导致 JavaScript 错误。<br></p>
+<p>这两个 JavaScript 语句会产生不同的结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj = getElementById(<span class="string">"Demo"</span>)</span><br><span class="line"></span><br><span class="line">var obj = getElementById(<span class="string">"demo"</span>)</span><br></pre></td></tr></table></figure>
+<p>如果可能，请在 HTML 中使用（与 JavaScript）相同的命名约定。</p>
+<h5 id="使用小写文件名"><a href="#使用小写文件名" class="headerlink" title="使用小写文件名"></a>使用小写文件名</h5><p>大多数 web 服务器（Apache、Unix）对文件名的大小写敏感：</p>
+<ul>
+<li>不能以 <code>london.jpg</code> 访问 <code>London.jpg</code>。</li>
+</ul>
+<p>其他 web 服务器（微软，IIS）对大小写不敏感：</p>
+<p>能够以 london.jpg 或 London.jpg 访问 London.jpg。</p>
+<p>如果使用混合大小写，那么您必须保持高度的一致性。</p>
+<p>如果您从对大小写不敏感的服务器转到一台对大小写敏感的服务器上，这些小错误将破坏您的网站。</p>
+<p>为了避免这些问题，请始终使用小写文件名（如果可以的话）。</p>
+<p>文件扩展名<br>HTML 文件名应该使用扩展名 .html（而不是 .htm）。</p>
+<p>CSS 文件应该使用扩展名 .css。</p>
+<p>JavaScript 文件应该使用扩展名 .js。</p></head></head></body></html></body></html>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    袁庆龙
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="blog.yuanqinglong.cn/HTML-5-样式指南和代码约定.html" title=" HTML(5) 样式指南和代码约定">blog.yuanqinglong.cn/HTML-5-样式指南和代码约定.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html5/" rel="tag"># html5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/前端提交数据的那些方式.html" rel="next" title=" 前端提交数据的那些方式">
+                <i class="fa fa-chevron-left"></i>  前端提交数据的那些方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">var jiathis_config={data_track_clickback:!0,summary:"",shortUrl:!1,hideMore:!1}</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/me.jpg" alt="袁庆龙">
+            
+              <p class="site-author-name" itemprop="name">袁庆龙</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/JokerDr" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yuanql96@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/9239487" target="_blank" title="StackOverflow">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-代码约定"><span class="nav-number">1.</span> <span class="nav-text">HTML 代码约定</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注释："><span class="nav-number">1.0.1.</span> <span class="nav-text">注释：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请使用小写元素名"><span class="nav-number">1.0.2.</span> <span class="nav-text">请使用小写元素名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关闭所有-HTML-元素"><span class="nav-number">1.0.3.</span> <span class="nav-text">关闭所有 HTML 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关闭空的-HTML-元素"><span class="nav-number">1.0.4.</span> <span class="nav-text">关闭空的 HTML 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用小写属性名"><span class="nav-number">1.0.5.</span> <span class="nav-text">使用小写属性名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性值加引号"><span class="nav-number">1.0.6.</span> <span class="nav-text">属性值加引号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#必需的属性"><span class="nav-number">1.0.7.</span> <span class="nav-text">必需的属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空格和等号"><span class="nav-number">1.0.8.</span> <span class="nav-text">空格和等号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免长代码行"><span class="nav-number">1.0.9.</span> <span class="nav-text">避免长代码行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空行和缩进"><span class="nav-number">1.0.10.</span> <span class="nav-text">空行和缩进</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#省略-和-？"><span class="nav-number">1.0.11.</span> <span class="nav-text">省略  和 ？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在-HTML5-标准中，-标签也能够被省略。"><span class="nav-number">1.0.12.</span> <span class="nav-text">在 HTML5 标准中， 标签也能够被省略。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元数据"><span class="nav-number">1.0.13.</span> <span class="nav-text">元数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为了确保恰当的解释，以及正确的搜索引擎索引，在文档中对语言和字符编码的定义越早越好："><span class="nav-number">1.0.14.</span> <span class="nav-text">为了确保恰当的解释，以及正确的搜索引擎索引，在文档中对语言和字符编码的定义越早越好：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTML-注释"><span class="nav-number">1.0.15.</span> <span class="nav-text">HTML 注释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样式表"><span class="nav-number">1.0.16.</span> <span class="nav-text">样式表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在-HTML-中加载-JavaScript"><span class="nav-number">1.0.17.</span> <span class="nav-text">在 HTML 中加载 JavaScript</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过-JavaScript-访问-HTML-元素"><span class="nav-number">1.0.18.</span> <span class="nav-text">通过 JavaScript 访问 HTML 元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用小写文件名"><span class="nav-number">1.0.19.</span> <span class="nav-text">使用小写文件名</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">袁庆龙</span>
+
+  
+<span> &nbsp;| &nbsp;</span>Hosted by <a href="https://pages.coding.me" class="theme-link" target="_blank">Coding Pages</a>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+<span> &nbsp;| &nbsp;</span><span id="showDays"></span> 
+
+
+
+
+
+<script>var seconds=1e3,minutes=60*seconds,hours=60*minutes,days=24*hours,years=365*days,birthDay=Date.UTC(2018,1,17,0,0,0);setInterval(function(){var e=new Date,s=e.getFullYear(),t=e.getMonth()+1,a=e.getDate(),o=e.getHours(),r=e.getMinutes(),n=e.getSeconds(),h=Date.UTC(s,t,a,o,r,n)-birthDay,u=Math.floor(h/years),d=Math.floor(h/days-365*u),y=Math.floor((h-(365*u+d)*days)/hours),i=Math.floor((h-(365*u+d)*days-y*hours)/minutes),l=Math.floor((h-(365*u+d)*days-y*hours-i*minutes)/seconds);document.getElementById("showDays").innerHTML="本站已运行 "+u+" 年 "+d+" 天 "+y+" 小时 "+i+" 分钟 "+l+" 秒"},1e3)</script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("VY6NTiuQJ0iH3Rt9T1hX5XHg-gzGzoHsz","Fw1p53syfMKPTTmseDpBK2gT")</script>
+  <script>function showTime(e){var t=new AV.Query(e),n=[],o=$(".leancloud_visitors");o.each(function(){n.push($(this).attr("id").trim())}),t.containedIn("url",n),t.find().done(function(e){var t=".leancloud-visitors-count";if(0!==e.length){for(var i=0;i<e.length;i++){var s=e[i],r=s.get("url"),l=s.get("time"),c=document.getElementById(r);$(c).find(t).text(l)}for(i=0;i<n.length;i++){r=n[i],c=document.getElementById(r);var u=$(c).find(t);""==u.text()&&u.text(0)}}else o.find(t).text(0)}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(e){var t=$(".leancloud_visitors"),n=t.attr("id").trim(),o=t.attr("data-flag-title").trim(),i=new AV.Query(e);i.equalTo("url",n),i.find({success:function(t){if(t.length>0){var i=t[0];i.fetchWhenSave(!0),i.increment("time"),i.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var s=new e,r=new AV.ACL;r.setPublicReadAccess(!0),r.setPublicWriteAccess(!0),s.setACL(r),s.set("title",o),s.set("url",n),s.set("time",1),s.save(null,{success:function(e){$(document.getElementById(n)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):$(".post-title-link").length>1&&showTime(e)})</script>
+
+
+
+  
+
+  
+<script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script></body></html>
