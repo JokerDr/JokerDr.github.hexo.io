@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="blog.yuanqinglong.cn/"/>
-  <updated>2018-05-19T15:40:23.852Z</updated>
+  <updated>2018-06-26T11:56:13.039Z</updated>
   <id>blog.yuanqinglong.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于Win10安装MongoDB报错</title>
+    <link href="blog.yuanqinglong.cn/%E5%85%B3%E4%BA%8EWin10%E5%AE%89%E8%A3%85MongoDB%E6%8A%A5%E9%94%99.html"/>
+    <id>blog.yuanqinglong.cn/关于Win10安装MongoDB报错.html</id>
+    <published>2018-06-26T11:38:17.000Z</published>
+    <updated>2018-06-26T11:56:13.039Z</updated>
+    
+    <content type="html"><![CDATA[<p>学校让留了一个爬虫任务，于是在我尝试着安装MongoDB时，遇到了这样的问题</p><h4 id="描述如下："><a href="#描述如下：" class="headerlink" title="描述如下："></a>描述如下：</h4><ul><li>etup wizard ended prematurely because of an error.your system has not been modified.To. Install this program at a later time run setup wizard again.click finish button to exit the setup</li></ul><h4 id="关于解决办法："><a href="#关于解决办法：" class="headerlink" title="关于解决办法："></a>关于解决办法：</h4><p>StackOverflow上给出的解决方案是：</p><ul><li><p>1）Choose Custom Installation</p></li><li><p>2) Uncheck Compass Installation with MongoDb</p></li><li><p>3) Finish the Setup</p></li><li><p>4) Again start setup and click on change the installation</p></li><li><p>5) Tick Compass Installation with MongoDb</p></li><li><p>6) Finish the Setup</p></li></ul><h5 id="简单的来说就是："><a href="#简单的来说就是：" class="headerlink" title="简单的来说就是："></a>简单的来说就是：</h5><p>需要在我们执行两次install.exe文件，</p><ul><li>第一次执行，我们会遇到compass这个选项，然后选择不打勾，继续安装（我安装报错就是因为第一遍安装时，这个选项我打勾了。。。），这样会安装成功</li><li>第二次执行，会出现与第一次不同的界面，我们选择<code>change</code>选项，即为，改变安装项，这时，我们一路执行到上次没打勾的compass那里，然后 <strong>打勾</strong>,继续执行，安装成功</li></ul><p>附链接：<a href="https://stackoverflow.com/questions/48474477/mongodb-3-6-2-2008r2-plus-not-installing" target="_blank" rel="noopener">https://stackoverflow.com/questions/48474477/mongodb-3-6-2-2008r2-plus-not-installing</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;学校让留了一个爬虫任务，于是在我尝试着安装MongoDB时，遇到了这样的问题&lt;/p&gt;&lt;h4 id=&quot;描述如下：&quot;&gt;&lt;a href=&quot;#描述如下：&quot; class=&quot;headerlink&quot; title=&quot;描述如下：&quot;&gt;&lt;/a&gt;描述如下：&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;etup wiz
+      
+    
+    </summary>
+    
+    
+      <category term="MongoDB" scheme="blog.yuanqinglong.cn/tags/MongoDB/"/>
+    
+  </entry>
   
   <entry>
     <title> HTML(5) 样式指南和代码约定</title>
@@ -68,9 +91,16 @@
     <link href="blog.yuanqinglong.cn/%E5%85%B3%E4%BA%8E-Restful-%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B.html"/>
     <id>blog.yuanqinglong.cn/关于-Restful-接口的二三事.html</id>
     <published>2018-05-18T02:13:58.000Z</published>
-    <updated>2018-05-18T15:18:54.487Z</updated>
+    <updated>2018-05-23T14:27:59.343Z</updated>
+    
+    <content type="html"><![CDATA[<p>互联网的发展是是迅速的，然而，这也就意味着，在纷繁复杂的环境下，前后端要想更加有效率的配合，免不了需要一种成熟的API设计理念，如：<code>RESTful</code> API<br>关于restful接口的设计，近期看了一些博文，在这里谈一下收获</p><p>一、协议<br>API与用户的通信协议，总是使用HTTPs协议。</p><p>二、域名<br>应该尽量将API部署在专用域名之下。</p><p><a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。</p><p><a href="https://example.org/api/" target="_blank" rel="noopener">https://example.org/api/</a><br>三、版本（Versioning）<br>应该将API的版本号放入URL。</p><p><a href="https://api.example.com/v1/" target="_blank" rel="noopener">https://api.example.com/v1/</a><br>另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。Github采用这种做法。</p><p>四、路径（Endpoint）<br>路径又称”终点”（endpoint），表示API的具体网址。</p><p>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。</p><p>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。</p><p><a href="https://api.example.com/v1/zoos" target="_blank" rel="noopener">https://api.example.com/v1/zoos</a><br><a href="https://api.example.com/v1/animals" target="_blank" rel="noopener">https://api.example.com/v1/animals</a><br><a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a><br>五、HTTP动词<br>对于资源的具体操作类型，由HTTP动词表示。</p><p>常用的HTTP动词有下面五个（括号里是对应的SQL命令）。</p><p>GET（SELECT）：从服务器取出资源（一项或多项）。<br>POST（CREATE）：在服务器新建一个资源。<br>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。<br>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。<br>DELETE（DELETE）：从服务器删除资源。<br>还有两个不常用的HTTP动词。</p><p>HEAD：获取资源的元数据。<br>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。<br>下面是一些例子。</p><p>GET /zoos：列出所有动物园<br>POST /zoos：新建一个动物园<br>GET /zoos/ID：获取某个指定动物园的信息<br>PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）<br>PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）<br>DELETE /zoos/ID：删除某个动物园<br>GET /zoos/ID/animals：列出某个指定动物园的所有动物<br>DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物<br>六、过滤信息（Filtering）<br>如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。</p><p>下面是一些常见的参数。</p><p>?limit=10：指定返回记录的数量<br>?offset=10：指定返回记录的开始位置。<br>?page=2&amp;per_page=100：指定第几页，以及每页的记录数。<br>?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。<br>?animal_type_id=1：指定筛选条件<br>参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</p><p>七、状态码（Status Codes）<br>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p><p>200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。<br>201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。<br>202 Accepted - [<em>]：表示一个请求已经进入后台排队（异步任务）<br>204 NO CONTENT - [DELETE]：用户删除数据成功。<br>400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。<br>401 Unauthorized - [</em>]：表示用户没有权限（令牌、用户名、密码错误）。<br>403 Forbidden - [<em>] 表示用户得到授权（与401错误相对），但是访问是被禁止的。<br>404 NOT FOUND - [</em>]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。<br>406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。<br>410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。<br>422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。<br>500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。<br>状态码的完全列表参见这里。</p><p>八、错误处理（Error handling）<br>如果状态码是4xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。</p><p>{<br>error: “Invalid API key”<br>}<br>九、返回结果<br>针对不同操作，服务器向用户返回的结果应该符合以下规范。</p><p>GET /collection：返回资源对象的列表（数组）<br>GET /collection/resource：返回单个资源对象<br>POST /collection：返回新生成的资源对象<br>PUT /collection/resource：返回完整的资源对象<br>PATCH /collection/resource：返回完整的资源对象<br>DELETE /collection/resource：返回一个空文档<br>十、Hypermedia API<br>RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。</p><p>比如，当用户向api.example.com的根目录发出请求，会得到这样一个文档。</p><p>{“link”: {<br>“rel”: “collection <a href="https://www.example.com/zoos" target="_blank" rel="noopener">https://www.example.com/zoos</a>“,<br>“href”: “<a href="https://api.example.com/zoos" target="_blank" rel="noopener">https://api.example.com/zoos</a>“,<br>“title”: “List of zoos”,<br>“type”: “application/vnd.yourformat+json”<br>}}<br>上面代码表示，文档中有一个link属性，用户读取这个属性就知道下一步该调用什么API了。rel表示这个API与当前网址的关系（collection关系，并给出该collection的网址），href表示API的路径，title表示API的标题，type表示返回类型。</p><p>Hypermedia API的设计被称为HATEOAS。Github的API就是这种设计，访问api.github.com会得到一个所有可用API的网址列表。</p><p>{<br>“current_user_url”: “<a href="https://api.github.com/user" target="_blank" rel="noopener">https://api.github.com/user</a>“,<br>“authorizations_url”: “<a href="https://api.github.com/authorizations" target="_blank" rel="noopener">https://api.github.com/authorizations</a>“,<br>// …<br>}<br>从上面可以看到，如果想获取当前用户的信息，应该去访问api.github.com/user，然后就得到了下面结果。</p><p>{<br>“message”: “Requires authentication”,<br>“documentation_url”: “<a href="https://developer.github.com/v3" target="_blank" rel="noopener">https://developer.github.com/v3</a>“<br>}<br>上面代码表示，服务器给出了提示信息，以及文档的网址。</p><p>十一、其他<br>（1）API的身份认证应该使用OAuth 2.0框架。</p><p>（2）服务器返回的数据格式，应该尽量使用JSON，避免使用XML。</p><p>（完）</p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;互联网的发展是是迅速的，然而，这也就意味着，在纷繁复杂的环境下，前后端要想更加有效率的配合，免不了需要一种成熟的API设计理念，如：&lt;code&gt;RESTful&lt;/code&gt; API&lt;br&gt;关于restful接口的设计，近期看了一些博文，在这里谈一下收获&lt;/p&gt;&lt;p&gt;一、协议
+      
     
     </summary>
     
@@ -468,28 +498,6 @@ console.log(obj[someKey]);
     
     
       <category term="css兼容性" scheme="blog.yuanqinglong.cn/tags/css%E5%85%BC%E5%AE%B9%E6%80%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="blog.yuanqinglong.cn/hello-world.html"/>
-    <id>blog.yuanqinglong.cn/hello-world.html</id>
-    <published>2018-01-17T13:17:10.145Z</published>
-    <updated>2018-01-23T03:21:38.664Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p><h3 id="设置「阅读全文」"><a href="#设置「阅读全文」" class="headerlink" title="设置「阅读全文」"></a>设置「阅读全文」</h3><p>1.在文章中使用 <!-- more --> 手动进行截断，Hexo 提供的方式 推荐<br>2.在文章的 front-matter 中添加 description，并提供文章摘录<br>3.自动形成摘要，在 主题配置文件 中添加：</p><p>auto_excerpt:<br>  enable: true<br>  length: 150<br>默认截取的长度为 150 字符，可以根据需要自行设定</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="hexo" scheme="blog.yuanqinglong.cn/categories/hexo/"/>
-    
-    
-      <category term="常用命令" scheme="blog.yuanqinglong.cn/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
